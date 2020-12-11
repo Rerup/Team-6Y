@@ -15,6 +15,6 @@ namespace Matematik5_0.Data
         {
             Database.Migrate();
         }
-        public DbSet<Matematik5_0.Models.WebModel.ExcerciseCategory> ExcerciseCategory { get; set; }
+        public DbSet<ExcerciseCategory> ExcerciseCategory { get; set; }
     }
 }
