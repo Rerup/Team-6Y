@@ -1,4 +1,4 @@
-﻿using Matematik_5_API.Models.WebModel;
+﻿using Matematik_5_API.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,8 +9,9 @@ namespace Matematik_5_API.Data
 {
     public class DomainDbContext : DbContext
     {
-        public DbSet<Excercise> Excercises { get; set; }
-        public DbSet<ExcerciseCategory> ExcerciseCategories { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<Comment> Comments { get; set; }
         public DomainDbContext ( DbContextOptions<DomainDbContext> options )
             : base(options)
         {

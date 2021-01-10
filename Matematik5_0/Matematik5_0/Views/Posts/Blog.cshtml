@@ -1,0 +1,37 @@
+﻿@model Matematik5_0.Models.Forum.Post
+
+@{
+    ViewData["Title"] = "Blog";
+}
+
+<div class="container">
+    <div class="col-md-12">
+        <h1>@Model.Title</h1>
+        <p>
+            @Model.Content
+        </p>
+        <div>
+            <span class="badge">Posted @Model.CreatedWhen</span>
+            <div class="pull-right">
+                <span class="label label-default">@Model.Author</span>
+            </div>
+        </div>
+        <hr>
+        <h1>Comments</h1>
+
+        @foreach (var item in Model.Comments)
+        {
+            <p>
+                @item.Content
+            </p>
+            <div>
+                <span class="badge">Posted @item.CreatedWhen</span>
+                <div class="pull-right">
+                    <span class="label label-default">@item.Author</span>
+                </div>
+            </div>
+        }
+        <a asp-action="RedirectToComment" asp-route-id="@Model.ID" class="pull-right forum-desc">Create New</a>
+    </div>
+</div>
+<hr>

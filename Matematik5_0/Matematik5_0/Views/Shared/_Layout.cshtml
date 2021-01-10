@@ -23,21 +23,7 @@
             </div>
             <ul class="leftlist">
                 <li><a href="#">Hjem</a></li>
-                <li> <a href="#">Forum</a></li>
-                <li>
-                    
-                    <div class="dropdown">
-                        <button class="dropbtn">Opgaver</button>
-                        <div class="dropdown-content">
-                            @foreach (var item in ViewBag.ExcerciseCategory)
-                            {
-                                <a href="#">@item.Title</a>
-                            }
-                            
-                        </div>
-                    </div>                 
-                </li>
-               
+                <li> <a  asp-action="Index" asp-controller="Categories">Forum</a></li>
                 <li><a href="#">Leaderboard</a></li>
             </ul>
             <ul>

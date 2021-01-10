@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Matematik5_0.Models.Forum.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link href="/css/forum.css" rel="stylesheet">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+
+                <div class="ibox-content m-b-sm border-bottom">
+                    <div class="p-xs">
+                        <div class="pull-left m-r-md">
+                            <i class="fa fa-globe text-navy mid-icon"></i>
+                        </div>
+                        <h2>Welcome to our forum</h2>
+                        <span>Feel free to choose topic you're interested in.</span>
+                    </div>
+                </div>
+
+                <div class="ibox-content forum-container">
+
+                    <div class="forum-title">
+                        <a asp-action="Create" class="pull-right forum-desc">Create New</a>
+                        <h3>FORUM</h3>
+                    </div>
+
+                    @foreach (var item in Model)
+                    {
+                        //Title and subinfo
+                        <div class="forum-item active">
+                            <div class="row">
+                                <div class="col-md-9">
+                                        <img src="~/lib/face-icon.png" alt="Alternate Text" class="forum-icon" />
+                                    <a class="forum-item-title" asp-action="RedirectToPost" asp-route-id="@item.ID">@item.Title</a>
+                                    <div class="forum-sub-title">@item.Description</div>
+                                </div>
+
+                                <div class="col-md-1 forum-info">
+                                    <span class="views-number">
+                                        12002
+                                    </span>
+                                    <div>
+                                        <small>Date</small>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-1 forum-info">
+                                    <span class="views-number">
+                                        1216
+                                    </span>
+                                    <div>
+                                        <small>Views</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
