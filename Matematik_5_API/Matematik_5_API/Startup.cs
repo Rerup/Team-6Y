@@ -34,11 +34,12 @@ namespace Matematik_5_API
             options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")));
 
-
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Matematik_5_API", Version = "v1" });
             });
+
+            // services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +57,8 @@ namespace Matematik_5_API
             app.UseRouting();
 
             app.UseAuthorization();
+
+            // app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {

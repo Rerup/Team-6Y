@@ -42,6 +42,10 @@ namespace Matematik5_0
                 client.BaseAddress = new Uri("https://localhost:44356");
             });
 
+            //Scoped: Ved hvert HTTP Request får vi et nyt instans af den klasse vi anvender. fx. ved en Database
+            //Transient: Objekt bliver lavet hver gang der er et request. 
+            //Singleton: Laver en enkelt instans igennem projeket og genanvender det samme objekt ved hvert kald.
+
             services.AddControllersWithViews().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 

@@ -57,6 +57,7 @@ namespace Matematik5_0.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create ( [Bind("Title,Description,CreatedWhen")] Category category )
         {
+            //BIND SIKRE IMOD OVERPOSTING FX. I POSTMAND IKKE KAN SÆTTE IsAdmin = true;
             if (ModelState.IsValid)
             {
                 await _service.PostCategoryAsync(category);
