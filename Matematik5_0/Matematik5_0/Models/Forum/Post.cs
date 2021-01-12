@@ -20,6 +20,9 @@ namespace Matematik5_0.Models.Forum
         public int Author { get; set; }
         public int CategoryID { get; set; }
 
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
+
         //Navigation Property
         public Category Category { get; set; }
         public IEnumerable<Comment> Comments { get; set; }

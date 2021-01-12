@@ -19,6 +19,9 @@ namespace Matematik5_0.Models.Forum
         [Required]
         public DateTime CreatedWhen { get; set; }
 
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
+
         // Navigation Properties
         public IEnumerable<Post> Posts { get; set; }
     }

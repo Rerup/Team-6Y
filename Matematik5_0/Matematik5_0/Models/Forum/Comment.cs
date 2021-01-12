@@ -17,6 +17,9 @@ namespace Matematik5_0.Models.Forum
         public int UserID { get; set; }
         public int PostID { get; set; }
 
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
+
         //Navigation Property
         public Post Post { get; set; }
     }
