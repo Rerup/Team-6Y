@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,6 +12,8 @@ namespace Matematik_5_API.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime CreatedWhen { get; set; }
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
 
         // Navigation Properties
         public IEnumerable<Post> Posts { get; set; }
