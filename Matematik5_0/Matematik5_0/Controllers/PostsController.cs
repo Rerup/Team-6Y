@@ -21,7 +21,7 @@ namespace Matematik5_0.Controllers
         }
 
         // GET: Posts
-        public async Task<IActionResult> Index ( int id )
+        public async Task<IActionResult> Index (int id)
         {
             var category = await _service.GetCategoryFromIdAsync(id);
             return View(category);
