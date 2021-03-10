@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "398143788964",
+    "firebase_url": "https://fir-dbsample-ea746-default-rtdb.firebaseio.com",
+    "project_id": "fir-dbsample-ea746",
+    "storage_bucket": "fir-dbsample-ea746.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398143788964:android:546968b9fff77c0ee9d331",
+        "android_client_info": {
+          "package_name": "com.example.firebasedbsample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "398143788964-3pm5q39d1c80hr72t2jugathhhcnn19t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7v590yGT_yqf42kmd3oABQfOX5ZyrmLE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "398143788964-3pm5q39d1c80hr72t2jugathhhcnn19t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "398143788964-sr70f82pdarmf15dgk6krujetntovn12.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "Anders-Due.Todo.Application"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398143788964:android:66b2ecb7970f5864e9d331",
+        "android_client_info": {
+          "package_name": "com.example.tv2app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "398143788964-3pm5q39d1c80hr72t2jugathhhcnn19t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7v590yGT_yqf42kmd3oABQfOX5ZyrmLE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "398143788964-3pm5q39d1c80hr72t2jugathhhcnn19t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "398143788964-sr70f82pdarmf15dgk6krujetntovn12.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "Anders-Due.Todo.Application"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
