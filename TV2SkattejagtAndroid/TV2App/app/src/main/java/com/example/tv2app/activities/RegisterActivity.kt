@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.convertTo
 import androidx.core.view.isEmpty
 import com.example.tv2app.activities.LoginActivity
 import com.example.tv2app.R
@@ -95,7 +96,7 @@ import com.google.firebase.database.FirebaseDatabase
                     val newUserParams = User(totalPoints = 0, userIdDb = auth.currentUser.uid, departmentId = department, uniqueId = id)
 
                     //ref.child("User").setValue(newUserParams)
-                    ref.setValue(newUserParams)
+                    ref.child("User").setValue(newUserParams)
                     val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
 
