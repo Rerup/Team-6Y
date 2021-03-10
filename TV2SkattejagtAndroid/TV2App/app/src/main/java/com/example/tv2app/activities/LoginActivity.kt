@@ -70,6 +70,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    //TODO Move this to UserRepository
     //Fun for userLogin
     private fun logInUser(email : String, password: String){
 

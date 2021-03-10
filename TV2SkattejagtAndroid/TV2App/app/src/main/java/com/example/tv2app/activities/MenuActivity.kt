@@ -34,6 +34,7 @@ class MenuActivity : AppCompatActivity() {
 
     }
 
+    //TODO Move this to UserRepository
     private fun signOut(){
         auth.signOut()
         Toast.makeText(applicationContext, "Signed Out", Toast.LENGTH_SHORT).show()

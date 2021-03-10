@@ -101,9 +101,7 @@ import com.google.firebase.database.FirebaseDatabase
 
                 }
                 else{
-
                     Log.e("AUTH", "Failed.." + task.exception)
-
                 }
             }
         }
