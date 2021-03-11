@@ -2,41 +2,28 @@ package com.example.tv2app.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.graphics.convertTo
 import androidx.core.view.isEmpty
-import com.example.tv2app.activities.LoginActivity
-import com.example.tv2app.R
 import com.example.tv2app.databinding.ActivityRegisterBinding
-import com.example.tv2app.models.User
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.example.tv2app.viewmodels.UserViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-    class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
 
-    //Firebase Auth Ref
-    private lateinit var auth : FirebaseAuth
-
-    private lateinit var ref : DatabaseReference
 
     //Binding Layout Elements
     lateinit var binding: ActivityRegisterBinding
+    private val userViewModel: UserViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //Firebase Auth Instance
-        auth = FirebaseAuth.getInstance()
-
-        //Firebase Database Instance
-        ref = FirebaseDatabase.getInstance().getReference("Users")
 
         //Binding to layout elements
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         //Layout
         val registerLogin = binding.registerButton
@@ -73,19 +60,19 @@ import com.google.firebase.database.FirebaseDatabase
                         .show()
             }
             else {
-
-                createUser(emailInput.text!!.trim().toString(), passwordInput.text!!.trim().toString(), departmentGroup.checkedRadioButtonId.toString(),
-                        uniqueId.text!!.toString())
+                userViewModel.createUser(emailInput.text!!.trim().toString(), passwordInput.text!!.trim().toString(), departmentGroup.checkedRadioButtonId.toString(),
+                    uniqueId.text!!.toString())
 
                 Toast.makeText(applicationContext, "Registered", Toast.LENGTH_SHORT).show()
-
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
             }
 
         }
 
 
     }
-        private fun createUser(email: String, password : String, department: String, id: String) {
+        /*private fun createUser(email: String, password : String, department: String, id: String) {
 
             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this){ task ->
 
@@ -95,8 +82,9 @@ import com.google.firebase.database.FirebaseDatabase
 
                     val newUserParams = User(totalPoints = 0, userIdDb = auth.currentUser.uid, departmentId = department, uniqueId = id)
 
-                    //ref.child("User").setValue(newUserParams)
-                    ref.child("User").setValue(newUserParams)
+                    var dbKey = ref.push().key.toString()
+                    ref.child(dbKey).setValue(newUserParams)
+
                     val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
 
@@ -105,7 +93,7 @@ import com.google.firebase.database.FirebaseDatabase
                     Log.e("AUTH", "Failed.." + task.exception)
                 }
             }
-        }
+        }*/
 
 
 }

@@ -9,13 +9,16 @@ import com.example.tv2app.activities.MenuActivity
 import com.example.tv2app.activities.RegisterActivity
 import com.example.tv2app.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
 
 class LoginActivity : AppCompatActivity() {
 
     //Binding layout elements
     lateinit var binding: ActivityLoginBinding
 
-    //Firebase Refs
+    //Firebase Ref
     lateinit var auth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,7 +74,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     //TODO Move this to UserRepository
-    //Fun for userLogin
+
     private fun logInUser(email : String, password: String){
 
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this){task ->
@@ -99,3 +102,4 @@ class LoginActivity : AppCompatActivity() {
 
 
 }
+
