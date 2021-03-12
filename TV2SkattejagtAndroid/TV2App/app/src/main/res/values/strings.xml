@@ -14,4 +14,7 @@
     <string name="leaderboard_button_description">See how you are competing against CO-Workers</string>
     <string name="hint_button_title">Hint</string>
     <string name="hint_button_description">Check for hints to see where treasures lurk</string>
+    <string name="start_fragment_title">Forside</string>
+    <string name="leaderboard_fragment_title">Leaderboard</string>
+    <string name="Hint_fragment_title">Hint</string>
 </resources>

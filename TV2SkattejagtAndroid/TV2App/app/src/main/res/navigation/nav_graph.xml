@@ -5,9 +5,31 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/startFragment">
 
+    <!-- START FRAGMENT -->
     <fragment
         android:id="@+id/startFragment"
         android:name="com.example.tv2app.activities.StartFragment"
-        android:label="fragment_start"
-        tools:layout="@layout/fragment_start" />
+        android:label="@string/start_fragment_title"
+        tools:layout="@layout/fragment_start" >
+        <action
+            android:id="@+id/action_startFragment_to_leaderboardFragment"
+            app:destination="@id/leaderboardFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_hintFragment"
+            app:destination="@id/hintFragment" />
+    </fragment>
+
+    <!-- LEADERBOARD FRAGMENT -->
+    <fragment
+        android:id="@+id/leaderboardFragment"
+        android:name="com.example.tv2app.activities.LeaderboardFragment"
+        android:label="@string/leaderboard_fragment_title"
+        tools:layout="@layout/fragment_leaderboard" />
+
+    <!-- HINT FRAGMENT -->
+    <fragment
+        android:id="@+id/hintFragment"
+        android:name="com.example.tv2app.activities.HintFragment"
+        android:label="@string/Hint_fragment_title"
+        tools:layout="@layout/fragment_hint" />
 </navigation>
