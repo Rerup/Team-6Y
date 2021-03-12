@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".activities.StartFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- SIGNOUT BUTTON -->
+            <Button
+                android:id="@+id/signOut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:backgroundTint="#EF5454"
+                android:fontFamily="@font/notosansbold"
+                android:text="Sign Out"
+                android:textSize="8sp" />
+
+            <!-- TV2 LOGO -->
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="84dp"
+                android:layout_height="79dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="1dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_action_name" />
+
+            <!-- NFC SCAN BUTTON -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/scanTreasure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                app:cardBackgroundColor="#EF5454"
+                app:cardCornerRadius="20dp"
+                app:cardPreventCornerOverlap="false">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Media -->
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="114dp"
+                        android:scaleType="centerCrop"
+                        android:scaleX="0.999"
+                        android:scaleY="0.999"
+                        app:srcCompat="@drawable/menu_scan" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <!-- Title, secondary and supporting text -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/notosansbold"
+                            android:text="@string/nfc_button_title"
+                            android:textColor="#FFFFFF" />
+
+                        <!--<TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/notosansbold"
+                            android:text="@string/nfc_button_description"
+                            android:textColor="#FFFFFF" />-->
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+
+            <!-- LEADERBOARD BUTTON -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/leaderbord"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                app:cardBackgroundColor="#EF5454"
+                app:cardCornerRadius="20dp"
+                app:cardPreventCornerOverlap="false">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Media -->
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="114dp"
+                        android:cropToPadding="true"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/menu_leaderbord" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <!-- Title, secondary and supporting text -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/notosansbold"
+                            android:text="@string/leaderbord_button_title"
+                            android:textColor="#FFFFFF" />
+
+                        <!--<TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/notosansbold"
+                            android:text="@string/leaderboard_button_description"
+                            android:textColor="#FFFFFF" />-->
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- HINT BUTTON -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                app:cardBackgroundColor="#EF5454"
+                app:cardCornerRadius="20dp"
+                app:cardPreventCornerOverlap="false">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Media -->
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="114dp"
+                        android:cropToPadding="true"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/menu_hint" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <!-- Title, secondary and supporting text -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/notosansbold"
+                            android:text="@string/hint_button_title"
+                            android:textColor="#FFFFFF" />
+
+                        <!--<TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/notosansbold"
+                            android:text="@string/hint_button_description"
+                            android:textColor="#FFFFFF" />-->
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+</layout>

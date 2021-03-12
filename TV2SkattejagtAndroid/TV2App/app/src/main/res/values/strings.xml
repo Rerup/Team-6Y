@@ -6,4 +6,12 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nfc_button_description">Scan an NFC Chip to unlock a treasure</string>
+    <string name="nfc_button_title">Scan a treasure</string>
+    <string name="leaderbord_button_title">Leaderbord</string>
+    <string name="leaderboard_button_description">See how you are competing against CO-Workers</string>
+    <string name="hint_button_title">Hint</string>
+    <string name="hint_button_description">Check for hints to see where treasures lurk</string>
 </resources>

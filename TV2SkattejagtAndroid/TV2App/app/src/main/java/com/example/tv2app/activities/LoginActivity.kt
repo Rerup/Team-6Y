@@ -52,7 +52,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext,"Signed In", Toast.LENGTH_SHORT)
                     .show()
 
-                val intent = Intent(this, MenuActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
             else {
@@ -79,7 +79,7 @@ class LoginActivity : AppCompatActivity() {
         if(currentUser != null)
         {
             Toast.makeText(applicationContext, "Welcome", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, MenuActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }
