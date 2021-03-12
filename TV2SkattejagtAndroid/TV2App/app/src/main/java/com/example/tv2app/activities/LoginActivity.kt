@@ -8,15 +8,20 @@ import android.widget.Toast
 import com.example.tv2app.activities.MenuActivity
 import com.example.tv2app.activities.RegisterActivity
 import com.example.tv2app.databinding.ActivityLoginBinding
+import com.example.tv2app.viewmodels.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.startKoin
 
 class LoginActivity : AppCompatActivity() {
 
     //Binding layout elements
     lateinit var binding: ActivityLoginBinding
+
+    //Initialize ViewModel
+    private val userViewModel: UserViewModel by viewModel()
 
     //Firebase Ref
     lateinit var auth : FirebaseAuth
@@ -41,8 +46,14 @@ class LoginActivity : AppCompatActivity() {
 
             if (emailInput.text!!.trim().isNotEmpty() && passwordInput.text!!.trim().isNotEmpty()) {
 
-                logInUser(emailInput.text!!.trim().toString(),
+                userViewModel.loginUser(emailInput.text!!.trim().toString(),
                         passwordInput.text!!.trim().toString())
+
+                Toast.makeText(applicationContext,"Signed In", Toast.LENGTH_SHORT)
+                    .show()
+
+                val intent = Intent(this, MenuActivity::class.java)
+                startActivity(intent)
             }
             else {
 
@@ -67,15 +78,14 @@ class LoginActivity : AppCompatActivity() {
         val currentUser = auth.currentUser
         if(currentUser != null)
         {
-            Toast.makeText(applicationContext, "Welcome back", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "Welcome", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
         }
     }
 
-    //TODO Move this to UserRepository
 
-    private fun logInUser(email : String, password: String){
+    /*private fun logInUser(email : String, password: String){
 
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this){task ->
 
@@ -98,7 +108,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Sign in failed", Toast.LENGTH_SHORT).show()
             }
         }
-    }
+    }*/
 
 
 }

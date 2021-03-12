@@ -63,9 +63,10 @@ class RegisterActivity : AppCompatActivity() {
                 userViewModel.createUser(emailInput.text!!.trim().toString(), passwordInput.text!!.trim().toString(), departmentGroup.checkedRadioButtonId.toString(),
                     uniqueId.text!!.toString())
 
-                Toast.makeText(applicationContext, "Registered", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
+                Toast.makeText(applicationContext, "Registered", Toast.LENGTH_SHORT).show()
+
             }
 
         }
