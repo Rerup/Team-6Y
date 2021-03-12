@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.tv2app.R
-import com.example.tv2app.databinding.ActivityMenuBinding
 import com.example.tv2app.databinding.FragmentStartBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -41,12 +40,15 @@ class StartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //Binding Elements Here
-        val signOut = binding.signOut
-        
+        val signOutButton = binding.signOut
+        val leaderboardButton = binding.leaderbord
+        val hintButton = binding.hint
+
+
         //OnClickListeners
-        signOut.setOnClickListener{ signOut() }
-
-
+        signOutButton.setOnClickListener{ signOut() }
+        leaderboardButton.setOnClickListener{goToLeaderboard()}
+        hintButton.setOnClickListener{goToHintScreen()}
     }
 
 
@@ -58,10 +60,13 @@ class StartFragment : Fragment() {
         activity?.startActivity(intent)
     }
 
-    private fun goToLeaderboard(){
+    fun goToLeaderboard(){
         findNavController().navigate(R.id.action_startFragment_to_leaderboardFragment)
     }
 
+    fun goToHintScreen(){
+        findNavController().navigate(R.id.action_startFragment_to_hintFragment)
+    }
 
 
 
