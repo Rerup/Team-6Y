@@ -1,5 +1,6 @@
 package com.example.tv2app.activities
 
+/*
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -42,4 +43,4 @@ class MenuActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-}
+}*/

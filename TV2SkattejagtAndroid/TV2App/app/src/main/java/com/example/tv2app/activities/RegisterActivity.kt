@@ -44,6 +44,7 @@ class RegisterActivity : AppCompatActivity() {
         //User created if success
         registerLogin.setOnClickListener {
 
+            var success = false
             if (emailInput.text!!.trim().isEmpty() || passwordInput.text!!.trim().isEmpty()
                || confirmPassword.text!!.trim().isEmpty() || uniqueId.text!!.trim().isEmpty() ||departmentGroup.isEmpty() || jobGroup.isEmpty()
             ) {
@@ -56,16 +57,15 @@ class RegisterActivity : AppCompatActivity() {
                         .show()
             }
             else if (passwordInput.text.toString() != confirmPassword.text.toString()){
-                Toast.makeText(applicationContext, "Password don't match", Toast.LENGTH_SHORT)
+                Toast.makeText(applicationContext, "Passwords don't match", Toast.LENGTH_SHORT)
                         .show()
             }
             else {
-                userViewModel.createUser(emailInput.text!!.trim().toString(), passwordInput.text!!.trim().toString(), departmentGroup.checkedRadioButtonId.toString(),
-                    uniqueId.text!!.toString())
 
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-                Toast.makeText(applicationContext, "Registered", Toast.LENGTH_SHORT).show()
+                userViewModel.createUser(emailInput.text!!.trim().toString(), passwordInput.text!!.trim().toString(), departmentGroup.checkedRadioButtonId.toString(),
+                    uniqueId.text!!.toString(), this)
+
+                //Toast.makeText(applicationContext, "Registered", Toast.LENGTH_SHORT).show()
 
             }
 

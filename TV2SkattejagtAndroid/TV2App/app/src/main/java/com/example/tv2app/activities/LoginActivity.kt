@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import com.example.tv2app.activities.MenuActivity
 import com.example.tv2app.activities.RegisterActivity
 import com.example.tv2app.databinding.ActivityLoginBinding
 import com.example.tv2app.viewmodels.UserViewModel
@@ -47,13 +46,9 @@ class LoginActivity : AppCompatActivity() {
             if (emailInput.text!!.trim().isNotEmpty() && passwordInput.text!!.trim().isNotEmpty()) {
 
                 userViewModel.loginUser(emailInput.text!!.trim().toString(),
-                        passwordInput.text!!.trim().toString())
+                        passwordInput.text!!.trim().toString(), this)
 
-                Toast.makeText(applicationContext,"Signed In", Toast.LENGTH_SHORT)
-                    .show()
 
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
             }
             else {
 

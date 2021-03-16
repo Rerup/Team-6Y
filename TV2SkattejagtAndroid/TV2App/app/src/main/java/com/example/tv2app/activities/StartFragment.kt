@@ -11,7 +11,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.tv2app.R
 import com.example.tv2app.databinding.FragmentStartBinding
+import com.example.tv2app.viewmodels.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 /**
@@ -22,6 +24,7 @@ class StartFragment : Fragment() {
     private lateinit var binding: FragmentStartBinding
 
     lateinit var auth : FirebaseAuth
+    private val userViewModel: UserViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,10 +32,13 @@ class StartFragment : Fragment() {
     ): View? {
         // Inflate the layout XML file and return a binding object instance
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_start, container, false)
-        return binding.root
 
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
+
+
+        return binding.root
+
 
     }
 
@@ -52,9 +58,9 @@ class StartFragment : Fragment() {
     }
 
 
-    //TODO signOut() virker ikke i fragment. Move this to UserRepository
+
     private fun signOut(){
-        auth.signOut()
+        userViewModel.signOutUser()
         Toast.makeText(context, "Signed Out", Toast.LENGTH_SHORT).show()
         val intent = Intent(activity, LoginActivity::class.java) // Fragments is not of context type = need the parent activity
         activity?.startActivity(intent)
