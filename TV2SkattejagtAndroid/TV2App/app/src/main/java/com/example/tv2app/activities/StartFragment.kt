@@ -66,11 +66,11 @@ class StartFragment : Fragment() {
         activity?.startActivity(intent)
     }
 
-    fun goToLeaderboard(){
+    private fun goToLeaderboard(){
         findNavController().navigate(R.id.action_startFragment_to_leaderboardFragment)
     }
 
-    fun goToHintScreen(){
+    private fun goToHintScreen(){
         findNavController().navigate(R.id.action_startFragment_to_hintFragment)
     }
 

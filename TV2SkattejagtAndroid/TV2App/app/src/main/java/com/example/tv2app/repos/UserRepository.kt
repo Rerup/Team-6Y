@@ -62,7 +62,6 @@ open class UserRepository {
 
         }
 
-
     }
 
     fun signOutUser(){
@@ -76,7 +75,7 @@ open class UserRepository {
 
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(){
             task -> if (task.isSuccessful){
-                //TODO Fix this shit
+
             val intent = Intent(context, MainActivity::class.java)
             startActivity(context,intent, null)
             Toast.makeText(context, "Signing in", Toast.LENGTH_SHORT).show()
@@ -84,7 +83,7 @@ open class UserRepository {
             else{
                 Log.i("AUTH", "Failed to Sign in" + task.exception)
                 Toast.makeText(context, "Failed, wrong password", Toast.LENGTH_SHORT).show()
-        }
+            }
         }
 
     }

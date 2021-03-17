@@ -81,31 +81,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-    /*private fun logInUser(email : String, password: String){
-
-        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this){task ->
-
-            if(task.isSuccessful){
-                Log.d("AUTH", "Sign in successful")
-
-                Toast.makeText(applicationContext,"Signed In", Toast.LENGTH_SHORT)
-                        .show()
-                //Sets current User
-                val user = auth.currentUser
-
-                //Go To Menu when signed in
-                val intent = Intent(this, MenuActivity::class.java)
-                startActivity(intent)
-            }
-
-            else{
-                //Throw User A Message if failed
-                Log.d("AUTH", "Sign in failed" + task.exception)
-                Toast.makeText(applicationContext, "Sign in failed", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }*/
-
 
 }
 

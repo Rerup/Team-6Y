@@ -73,28 +73,6 @@ class RegisterActivity : AppCompatActivity() {
 
 
     }
-        /*private fun createUser(email: String, password : String, department: String, id: String) {
-
-            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this){ task ->
-
-                if(task.isSuccessful) {
-
-                    Log.e("AUTH", "Successful")
-
-                    val newUserParams = User(totalPoints = 0, userIdDb = auth.currentUser.uid, departmentId = department, uniqueId = id)
-
-                    var dbKey = ref.push().key.toString()
-                    ref.child(dbKey).setValue(newUserParams)
-
-                    val intent = Intent(this, LoginActivity::class.java)
-                    startActivity(intent)
-
-                }
-                else{
-                    Log.e("AUTH", "Failed.." + task.exception)
-                }
-            }
-        }*/
 
 
 }
