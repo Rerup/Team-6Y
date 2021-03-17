@@ -23,7 +23,6 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailInput"
-            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/notosansbold"
@@ -48,7 +47,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/notosansbold"
-            android:textColor="@color/black"
             android:inputType="textPassword"
             android:hint="Password" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -102,7 +100,6 @@
             android:layout_width="match_parent"
             android:fontFamily="@font/notosansbold"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:hint="Confirm Password" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,7 +122,6 @@
             android:fontFamily="@font/notosansbold"
             android:layout_height="wrap_content"
             android:maxLength="4"
-            android:textColor="@color/black"
             android:hint="Unique TV2 ID"/>
     </com.google.android.material.textfield.TextInputLayout>
 
