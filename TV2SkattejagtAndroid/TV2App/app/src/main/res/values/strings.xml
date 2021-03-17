@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">TV2App</string>
-    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_register">Registrer Bruger</string>
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.

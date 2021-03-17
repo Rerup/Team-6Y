@@ -7,20 +7,6 @@
     android:layout_height="match_parent">
 
 
-    <TextView
-        android:id="@+id/RegisterTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        android:textColor="#EF5454"
-        android:textSize="24sp"
-        android:fontFamily="@font/notosansbold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.22" />
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         android:layout_width="match_parent"
@@ -28,14 +14,16 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:textColorHint="#EF5454"
+        android:paddingTop="45dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RegisterTV"
+        app:layout_constraintTop_toBottomOf="@id/logo"
         app:layout_constraintVertical_bias="0.050000012">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailInput"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/notosansbold"
@@ -60,6 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/notosansbold"
+            android:textColor="@color/black"
             android:inputType="textPassword"
             android:hint="Password" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -83,15 +72,16 @@
         android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleX="6"
-        android:scaleY="6"
+        android:scaleX="4"
+        android:scaleY="4"
         android:src="@drawable/ic_action_name"
-        app:layout_constraintBottom_toTopOf="@+id/RegisterTV"
+        app:layout_constraintBottom_toTopOf="parent"
+        android:paddingTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.615" />
+        app:layout_constraintVertical_bias="0.31" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout4"
@@ -112,6 +102,7 @@
             android:layout_width="match_parent"
             android:fontFamily="@font/notosansbold"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:hint="Confirm Password" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -134,6 +125,7 @@
             android:fontFamily="@font/notosansbold"
             android:layout_height="wrap_content"
             android:maxLength="4"
+            android:textColor="@color/black"
             android:hint="Unique TV2 ID"/>
     </com.google.android.material.textfield.TextInputLayout>
 

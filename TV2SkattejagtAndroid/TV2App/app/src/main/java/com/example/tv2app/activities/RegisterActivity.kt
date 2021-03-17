@@ -65,7 +65,7 @@ class RegisterActivity : AppCompatActivity() {
                 userViewModel.createUser(emailInput.text!!.trim().toString(), passwordInput.text!!.trim().toString(), departmentGroup.checkedRadioButtonId.toString(),
                     uniqueId.text!!.toString(), this)
 
-                //Toast.makeText(applicationContext, "Registered", Toast.LENGTH_SHORT).show()
+
 
             }
 
