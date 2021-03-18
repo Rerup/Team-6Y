@@ -46,25 +46,25 @@ class StartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //Binding Elements Here
-        val signOutButton = binding.signOut
+        //val signOutButton = binding.signOut
         val leaderboardButton = binding.leaderbord
         val hintButton = binding.hint
 
 
         //OnClickListeners
-        signOutButton.setOnClickListener{ signOut() }
+        //signOutButton.setOnClickListener{ signOut() }
         leaderboardButton.setOnClickListener{goToLeaderboard()}
         hintButton.setOnClickListener{goToHintScreen()}
     }
 
 
 
-    private fun signOut(){
+    /*private fun signOut(){
         userViewModel.signOutUser()
         Toast.makeText(context, "Signed Out", Toast.LENGTH_SHORT).show()
         val intent = Intent(activity, LoginActivity::class.java) // Fragments is not of context type = need the parent activity
         activity?.startActivity(intent)
-    }
+    }*/
 
     private fun goToLeaderboard(){
         findNavController().navigate(R.id.action_startFragment_to_leaderboardFragment)
