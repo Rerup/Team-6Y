@@ -49,6 +49,7 @@ open class UserRepository {
             //Save object to this location and set the values of the object given by the user.
             ref.child(dbKey).setValue(user)
 
+            //Start Activity
             val intent = Intent(context, LoginActivity::class.java)
             startActivity(context,intent,null)
             Toast.makeText(context, "Registered", Toast.LENGTH_SHORT).show()
