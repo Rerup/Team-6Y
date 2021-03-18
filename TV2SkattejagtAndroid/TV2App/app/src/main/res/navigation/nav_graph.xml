@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_startFragment_to_hintFragment"
             app:destination="@id/hintFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
 
     <!-- LEADERBOARD FRAGMENT -->
@@ -32,4 +35,9 @@
         android:name="com.example.tv2app.activities.HintFragment"
         android:label="@string/Hint_fragment_title"
         tools:layout="@layout/fragment_hint" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.tv2app.activities.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

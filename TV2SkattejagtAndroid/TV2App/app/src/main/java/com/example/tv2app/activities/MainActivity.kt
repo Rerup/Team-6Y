@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.tv2app.R
@@ -51,6 +52,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 return true
             }
 
+            R.id.oplysninger -> {
+                goToProfile()
+                return true
+            }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -65,4 +71,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
+
+    private fun goToProfile(){
+        navController.navigate(R.id.action_startFragment_to_profileFragment)
+    }
+
 }

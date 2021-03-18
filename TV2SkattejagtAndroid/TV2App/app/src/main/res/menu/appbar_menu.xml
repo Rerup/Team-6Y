@@ -7,16 +7,28 @@
         app:showAsAction="always"
         android:icon="@drawable/ic_baseline_more_vert_24">
         <menu>
+
+
+            <item
+                android:title="Bruger Oplysninger"
+                android:id="@+id/oplysninger"
+                android:icon="@drawable/ic_baseline_manage_accounts_24"
+                app:showAsAction="never"/>
+
+
             <item
                 android:title="Indstillinger"
                 android:icon="@drawable/ic_baseline_settings_24"
                 android:id="@+id/indstillinger"
                 app:showAsAction="never"/>
+
             <item
                 android:title="Log af"
                 android:icon="@drawable/ic_baseline_logout_24"
                 android:id="@+id/logud"
                 app:showAsAction="never"/>
+
+
         </menu>
     </item>
 
