@@ -41,7 +41,6 @@ open class UserRepository {
             //Get Unique Identifier to Firebase. User will be seen as this Id in the Database.
             val idDb = auth.currentUser?.uid ?:""
 
-
             //Create the User object with these Params, standard is 0 point when account is created.
             val user = User(totalPoints = 0, userIdDb = idDb, departmentId = department, uniqueId = id)
 

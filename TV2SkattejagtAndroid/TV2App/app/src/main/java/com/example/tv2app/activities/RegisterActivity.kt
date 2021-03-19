@@ -27,7 +27,7 @@ class RegisterActivity : AppCompatActivity() {
 
         //Layout
         val registerLogin = binding.registerButton
-        val emailInput = binding.emailInput //TODO ?:""
+        val emailInput = binding.emailInput
         val passwordInput = binding.passwordInputRegister
         val confirmPassword = binding.confirmPassword
         val uniqueId = binding.uniqueId
@@ -40,17 +40,16 @@ class RegisterActivity : AppCompatActivity() {
         val jobGroup = binding.radioGroupJob
 
 
-
         //User created if success
         registerLogin.setOnClickListener {
             //TODO Fix this shit
-            if (emailInput.text!!.trim().isEmpty() || passwordInput.text!!.trim().isEmpty()
-               || confirmPassword.text!!.trim().isEmpty() || uniqueId.text!!.trim().isEmpty() ||departmentGroup.isEmpty() || jobGroup.isEmpty()
+            if (emailInput.text?.trim()?.isEmpty() == true || passwordInput.text?.trim()?.isEmpty() == true
+               || confirmPassword.text?.trim()?.isEmpty() == true || uniqueId.text?.trim()?.isEmpty() == true || departmentGroup.isEmpty() || jobGroup.isEmpty()
             ) {
                 Toast.makeText(applicationContext, "Fill in all information", Toast.LENGTH_SHORT).show()
 
             }
-            else if(passwordInput.text!!.length < 6)
+            else if(passwordInput.text?.length ?:0 < 6)
             {
                 Toast.makeText(applicationContext, "Password must at least contain 6 letters", Toast.LENGTH_SHORT)
                         .show()
@@ -61,8 +60,8 @@ class RegisterActivity : AppCompatActivity() {
             }
             else {
 
-                userViewModel.createUser(emailInput.text!!.trim().toString(), passwordInput.text!!.trim().toString(), departmentGroup.checkedRadioButtonId.toString(),
-                    uniqueId.text!!.toString(), this)
+                userViewModel.createUser(emailInput.text?.trim().toString(), passwordInput.text?.trim().toString(), departmentGroup.checkedRadioButtonId.toString(),
+                    uniqueId.text?.trim().toString(), this)
 
 
 

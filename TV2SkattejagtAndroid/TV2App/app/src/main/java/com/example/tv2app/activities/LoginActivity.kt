@@ -43,15 +43,16 @@ class LoginActivity : AppCompatActivity() {
         //Listening for Login Button Click
         buttonLogin.setOnClickListener {
 
-            if (emailInput.text!!.trim().isNotEmpty() && passwordInput.text!!.trim().isNotEmpty()) {
+            //Checking if User typed in all information.
+            if (emailInput.text?.trim()?.isNotEmpty() == true && passwordInput.text?.trim()?.isNotEmpty() == true) {
 
-                userViewModel.loginUser(emailInput.text!!.trim().toString(),
-                        passwordInput.text!!.trim().toString(), this)
+                userViewModel.loginUser(emailInput.text?.trim().toString(),
+                        passwordInput.text?.trim().toString(), this)
 
 
             }
             else {
-
+                //Give Toast to User to fill in all information.
                 Toast.makeText(applicationContext, "Type in All information", Toast.LENGTH_SHORT)
                         .show()
             }
