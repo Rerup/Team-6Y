@@ -37,9 +37,7 @@ class StartFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
 
-
         return binding.root
-
 
     }
 

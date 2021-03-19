@@ -39,16 +39,16 @@ open class UserRepository {
             task -> if (task.isSuccessful){
 
             //Get Unique Identifier to Firebase. User will be seen as this Id in the Database.
-            val dbKey = ref.push().key.toString()
+            val idDb = auth.currentUser?.uid ?:""
 
-            val idDb = auth.currentUser?.uid
 
             //Create the User object with these Params, standard is 0 point when account is created.
-            val user = User(totalPoints = 0, userIdDb = idDb!!, departmentId = department, uniqueId = id)
+            val user = User(totalPoints = 0, userIdDb = idDb, departmentId = department, uniqueId = id)
 
             //Save object to this location and set the values of the object given by the user.
-            ref.child(dbKey).setValue(user)
+            ref.child(idDb).setValue(user)
 
+            //TODO Sæt i Start Activity
             //Start Activity
             val intent = Intent(context, LoginActivity::class.java)
             startActivity(context,intent,null)

@@ -27,7 +27,7 @@ class RegisterActivity : AppCompatActivity() {
 
         //Layout
         val registerLogin = binding.registerButton
-        val emailInput = binding.emailInput
+        val emailInput = binding.emailInput //TODO ?:""
         val passwordInput = binding.passwordInputRegister
         val confirmPassword = binding.confirmPassword
         val uniqueId = binding.uniqueId
@@ -43,8 +43,7 @@ class RegisterActivity : AppCompatActivity() {
 
         //User created if success
         registerLogin.setOnClickListener {
-
-            var success = false
+            //TODO Fix this shit
             if (emailInput.text!!.trim().isEmpty() || passwordInput.text!!.trim().isEmpty()
                || confirmPassword.text!!.trim().isEmpty() || uniqueId.text!!.trim().isEmpty() ||departmentGroup.isEmpty() || jobGroup.isEmpty()
             ) {
@@ -64,6 +63,8 @@ class RegisterActivity : AppCompatActivity() {
 
                 userViewModel.createUser(emailInput.text!!.trim().toString(), passwordInput.text!!.trim().toString(), departmentGroup.checkedRadioButtonId.toString(),
                     uniqueId.text!!.toString(), this)
+
+
 
 
 
