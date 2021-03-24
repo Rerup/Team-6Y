@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.example.tv2app.activities.RegisterActivity
 import com.example.tv2app.databinding.ActivityLoginBinding
 import com.example.tv2app.viewmodels.UserViewModel
@@ -47,15 +48,31 @@ class LoginActivity : AppCompatActivity() {
             if (emailInput.text?.trim()?.isNotEmpty() == true && passwordInput.text?.trim()?.isNotEmpty() == true) {
 
                 userViewModel.loginUser(emailInput.text?.trim().toString(),
-                        passwordInput.text?.trim().toString(), this)
+                        passwordInput.text?.trim().toString())
 
 
+                //Makes sure that user is retrieved before trying to login in Activity
+                Thread.sleep(500)
+
+                if (auth.currentUser != null){
+                    //Sign user into main menu.
+                    Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, MainActivity::class.java))
+
+                }
+                else {
+                    Toast.makeText(this, "Failed to sign in", Toast.LENGTH_SHORT).show()
+                }
             }
             else {
                 //Give Toast to User to fill in all information.
                 Toast.makeText(applicationContext, "Type in All information", Toast.LENGTH_SHORT)
                         .show()
             }
+
+
+
+
 
         }
 
@@ -75,7 +92,7 @@ class LoginActivity : AppCompatActivity() {
         val currentUser = auth.currentUser
         if(currentUser != null)
         {
-            Toast.makeText(applicationContext, "Welcome", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "Welcome Back", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }

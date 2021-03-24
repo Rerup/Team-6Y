@@ -1,22 +1,15 @@
 package com.example.tv2app.repos
 
-import android.app.Activity
-import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
-import com.example.tv2app.activities.LoginActivity
 import com.example.tv2app.activities.MainActivity
-import com.example.tv2app.activities.RegisterActivity
 import com.example.tv2app.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import java.util.*
-import kotlin.coroutines.coroutineContext
 
 open class UserRepository {
 
@@ -26,10 +19,11 @@ open class UserRepository {
 
 
     //Create an account with the params the user gave. Firebase saves Auth User to DB and User Object.
-    fun createUser(email: String, password : String, department: String, id: String, context: Context){
+    fun createUser(email: String, password : String, department: String, id: String){
 
         //Authentication Instance.
         auth = FirebaseAuth.getInstance()
+
 
         //The path will be Users Node.
         ref = FirebaseDatabase.getInstance().getReference("Users")
@@ -47,16 +41,11 @@ open class UserRepository {
             //Save object to this location and set the values of the object given by the user.
             ref.child(idDb).setValue(user)
 
-            //TODO Sæt i Start Activity
-            //Start Activity
-            val intent = Intent(context, LoginActivity::class.java)
-            startActivity(context,intent,null)
-            Toast.makeText(context, "Registered", Toast.LENGTH_SHORT).show()
 
         }
             //Throw exception
             else{
-                Log.i("AUTH", "Failed to create account" + task.exception)
+                Log.i("AUTH", "Failed to create account " + task.exception)
 
         }
 
@@ -69,24 +58,24 @@ open class UserRepository {
         auth.signOut()
     }
 
-     fun logInUser(email : String, password: String, context: Context){
+    fun logInUser(email : String, password: String){
 
         auth = FirebaseAuth.getInstance()
 
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(){
+
             task -> if (task.isSuccessful){
 
-            val intent = Intent(context, MainActivity::class.java)
-            startActivity(context,intent, null)
-            Toast.makeText(context, "Signing in", Toast.LENGTH_SHORT).show()
+            Log.i("AUTH", "Logged In Correctly")
+
         }
             else{
                 Log.i("AUTH", "Failed to Sign in" + task.exception)
-                Toast.makeText(context, "Failed, wrong password", Toast.LENGTH_SHORT).show()
             }
         }
 
     }
+
 
 
 

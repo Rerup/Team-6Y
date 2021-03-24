@@ -7,18 +7,19 @@ import com.example.tv2app.repos.UserRepository
 class UserViewModel(private val userRepository : UserRepository) : ViewModel() {
 
 
-    fun createUser(email : String, password : String, department : String, id : String, context: Context){
-        userRepository.createUser(email, password, department, id, context)
+    fun createUser(email : String, password : String, department : String, id : String){
+        userRepository.createUser(email, password, department, id)
 
     }
 
-    fun loginUser(email: String, password: String, context: Context){
-        userRepository.logInUser(email, password, context)
+    fun loginUser(email: String, password: String){
+        userRepository.logInUser(email, password)
     }
 
     fun signOutUser(){
         userRepository.signOutUser()
     }
+
 
 
 }

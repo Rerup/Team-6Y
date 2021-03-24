@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.isEmpty
 import com.example.tv2app.databinding.ActivityRegisterBinding
 import com.example.tv2app.viewmodels.UserViewModel
+import com.google.firebase.auth.FirebaseAuth
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterActivity : AppCompatActivity() {
@@ -14,11 +16,17 @@ class RegisterActivity : AppCompatActivity() {
 
     //Binding Layout Elements
     lateinit var binding: ActivityRegisterBinding
+
+    //Firebase Ref
+    lateinit var auth : FirebaseAuth
+
     private val userViewModel: UserViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //Get FirebaseAuth Instance to track the user
+        auth = FirebaseAuth.getInstance()
 
         //Binding to layout elements
         binding = ActivityRegisterBinding.inflate(layoutInflater)
@@ -38,15 +46,17 @@ class RegisterActivity : AppCompatActivity() {
         val rbKøbenhavn = binding.rbCopenhagen
         val departmentGroup = binding.radioGroupDepartment
         val jobGroup = binding.radioGroupJob
+        //To check if account has been created correctly.
+
 
 
         //User created if success
         registerLogin.setOnClickListener {
-            //TODO Fix this shit
             if (emailInput.text?.trim()?.isEmpty() == true || passwordInput.text?.trim()?.isEmpty() == true
                || confirmPassword.text?.trim()?.isEmpty() == true || uniqueId.text?.trim()?.isEmpty() == true || departmentGroup.isEmpty() || jobGroup.isEmpty()
             ) {
-                Toast.makeText(applicationContext, "Fill in all information", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Fill in all information", Toast.LENGTH_SHORT)
+                        .show()
 
             }
             else if(passwordInput.text?.length ?:0 < 6)
@@ -60,19 +70,28 @@ class RegisterActivity : AppCompatActivity() {
             }
             else {
 
-                userViewModel.createUser(emailInput.text?.trim().toString(), passwordInput.text?.trim().toString(), departmentGroup.checkedRadioButtonId.toString(),
-                    uniqueId.text?.trim().toString(), this)
+                    userViewModel.createUser(emailInput.text?.trim().toString(), passwordInput.text?.trim().toString(), departmentGroup.checkedRadioButtonId.toString(),
+                            uniqueId.text?.trim().toString())
+
+                     //Makes sure that user is retrieved before trying to login
+                     Thread.sleep(700)
+
+                     if (auth.currentUser != null){
+
+                         Toast.makeText(this, "Creating account and signing you in", Toast.LENGTH_SHORT).show()
+                         startActivity((Intent(this, LoginActivity::class.java)))
 
 
+                     }
 
-
+                     else {
+                         Toast.makeText(this, "Failed to create account", Toast.LENGTH_SHORT).show()
+                     }
 
             }
 
         }
 
-
     }
-
 
 }
