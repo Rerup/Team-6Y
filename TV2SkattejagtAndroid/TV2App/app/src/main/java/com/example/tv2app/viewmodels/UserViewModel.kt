@@ -6,6 +6,7 @@ import com.example.tv2app.repos.UserRepository
 
 class UserViewModel(private val userRepository : UserRepository) : ViewModel() {
 
+    //TODO LiveData
 
     fun createUser(email : String, password : String, department : String, id : String){
         userRepository.createUser(email, password, department, id)
@@ -20,6 +21,9 @@ class UserViewModel(private val userRepository : UserRepository) : ViewModel() {
         userRepository.signOutUser()
     }
 
+    fun getUserById(){
+        userRepository.getUserById()
+    }
 
 
 }

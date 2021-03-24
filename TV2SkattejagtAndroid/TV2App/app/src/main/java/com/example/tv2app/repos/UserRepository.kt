@@ -1,15 +1,9 @@
 package com.example.tv2app.repos
 
-import android.content.Context
-import android.content.Intent
 import android.util.Log
-import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
-import com.example.tv2app.activities.MainActivity
 import com.example.tv2app.models.User
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 open class UserRepository {
 
@@ -23,7 +17,6 @@ open class UserRepository {
 
         //Authentication Instance.
         auth = FirebaseAuth.getInstance()
-
 
         //The path will be Users Node.
         ref = FirebaseDatabase.getInstance().getReference("Users")
@@ -40,7 +33,6 @@ open class UserRepository {
 
             //Save object to this location and set the values of the object given by the user.
             ref.child(idDb).setValue(user)
-
 
         }
             //Throw exception
@@ -77,6 +69,34 @@ open class UserRepository {
     }
 
 
+   /* fun getUserById(){
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?:""
+        ref = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+        val userListener = object : ValueEventListener{
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val user = snapshot.value as User
+                Log.i("READ USER", user.userIdDb)
+                //val userPoints = snapshot.child("totalPoints").value as User
+                //val department = snapshot.child("departmentId").value as User
+                //val jobGroup = snapshot.child("jobGroup").value as User
+                //val email = snapshot.child("email").value as User
+            }
+
+            //Handle DB Error
+            override fun onCancelled(error: DatabaseError) {
+                Log.i("DBRead", error.message)
+            }
+
+        }
+        ref.addValueEventListener(userListener)
+
+    }*/
+
+    fun getAllUsers(){
+        //TODO Lav logik
+
+    }
 
 
 }

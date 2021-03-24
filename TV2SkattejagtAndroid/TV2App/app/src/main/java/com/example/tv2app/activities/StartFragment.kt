@@ -57,14 +57,6 @@ class StartFragment : Fragment() {
     }
 
 
-
-    /*private fun signOut(){
-        userViewModel.signOutUser()
-        Toast.makeText(context, "Signed Out", Toast.LENGTH_SHORT).show()
-        val intent = Intent(activity, LoginActivity::class.java) // Fragments is not of context type = need the parent activity
-        activity?.startActivity(intent)
-    }*/
-
     private fun goToLeaderboard(){
         findNavController().navigate(R.id.action_startFragment_to_leaderboardFragment)
     }

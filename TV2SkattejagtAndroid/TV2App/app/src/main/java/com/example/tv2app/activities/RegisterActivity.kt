@@ -80,8 +80,6 @@ class RegisterActivity : AppCompatActivity() {
 
                          Toast.makeText(this, "Creating account and signing you in", Toast.LENGTH_SHORT).show()
                          startActivity((Intent(this, LoginActivity::class.java)))
-
-
                      }
 
                      else {

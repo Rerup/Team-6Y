@@ -52,12 +52,13 @@ class LoginActivity : AppCompatActivity() {
 
 
                 //Makes sure that user is retrieved before trying to login in Activity
-                Thread.sleep(500)
+                Thread.sleep(700)
 
                 if (auth.currentUser != null){
                     //Sign user into main menu.
                     Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, MainActivity::class.java))
+
 
                 }
                 else {
