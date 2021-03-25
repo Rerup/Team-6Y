@@ -6,5 +6,6 @@ interface Task {
     var  point : Int
     var description : String
     var location : String
+    var taskId : String
 
 }

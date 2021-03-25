@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.tv2app.R
+import com.example.tv2app.viewmodels.TaskViewModel
 import com.example.tv2app.viewmodels.UserViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private lateinit var navController: NavController
 
     private val userViewModel: UserViewModel by viewModel()
+    private val taskViewModel : TaskViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +35,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         // Show a title in the app bar based off of the destination's label, and
         // display the Up(←) button whenever you're not on a top-level destination.
         setupActionBarWithNavController(navController)
+
+        //Test populate DB with Tasks
+        taskViewModel.dummyData()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

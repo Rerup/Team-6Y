@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isEmpty
 import com.example.tv2app.databinding.ActivityRegisterBinding
+import com.example.tv2app.viewmodels.TaskViewModel
 import com.example.tv2app.viewmodels.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -21,6 +22,7 @@ class RegisterActivity : AppCompatActivity() {
     lateinit var auth : FirebaseAuth
 
     private val userViewModel: UserViewModel by viewModel()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

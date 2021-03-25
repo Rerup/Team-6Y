@@ -4,12 +4,13 @@ import android.util.Log
 import com.example.tv2app.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
 
 open class UserRepository {
 
     private lateinit var auth : FirebaseAuth
     private lateinit var ref : DatabaseReference
-
+    private lateinit var db : FirebaseDatabase
 
 
     //Create an account with the params the user gave. Firebase saves Auth User to DB and User Object.
@@ -39,7 +40,7 @@ open class UserRepository {
             else{
                 Log.i("AUTH", "Failed to create account " + task.exception)
 
-        }
+            }
 
         }
 
@@ -68,38 +69,50 @@ open class UserRepository {
 
     }
 
+    //TODO Denne skal i View, hvor der er brug for den samt linkes til View Elementer, denne kan bruges til Leaderboard med et RecyclerView
+    fun userListener(){
 
-   /* fun getUserById(){
-        val uid = FirebaseAuth.getInstance().currentUser?.uid ?:""
-        ref = FirebaseDatabase.getInstance().getReference("Users").child(uid)
-        val userListener = object : ValueEventListener{
+        //Firebase Instance and Reference
+        db = FirebaseDatabase.getInstance()
+        ref = db.reference
+
+        ref.child("Users").addValueEventListener(object : ValueEventListener{
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                val user = snapshot.value as User
-                Log.i("READ USER", user.userIdDb)
-                //val userPoints = snapshot.child("totalPoints").value as User
-                //val department = snapshot.child("departmentId").value as User
-                //val jobGroup = snapshot.child("jobGroup").value as User
-                //val email = snapshot.child("email").value as User
-            }
 
-            //Handle DB Error
+                //Get all children at reference which are Users.
+                val children = snapshot.children
+                //Iterate through all of the children/Users.
+                for (child : DataSnapshot in children){
+                    //Set value to object of user
+
+                    //TODO Implement more properties to use in View
+                    val value = child.getValue(User::class.java)
+                    val totalPoints = value?.totalPoints ?:""
+                    val department = value?.departmentId ?:""
+                    val id = value?.userIdDb ?:""
+                    val tv2id = value?.uniqueId ?:""
+                    //Testing
+                    Log.i("DB READ", "Id: $id points: $totalPoints department: $department tv2Id: $tv2id")
+
+                }
+                    // Set to UI Elements here.
+                }
+            //Handle the error
             override fun onCancelled(error: DatabaseError) {
-                Log.i("DBRead", error.message)
+                Log.i("DB READ", error.message)
             }
 
-        }
-        ref.addValueEventListener(userListener)
+        })
 
-    }*/
 
-    fun getAllUsers(){
-        //TODO Lav logik
+    }
 
     }
 
 
-}
+
+
 
 
 

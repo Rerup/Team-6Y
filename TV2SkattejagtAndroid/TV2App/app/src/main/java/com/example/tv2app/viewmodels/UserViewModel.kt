@@ -21,8 +21,8 @@ class UserViewModel(private val userRepository : UserRepository) : ViewModel() {
         userRepository.signOutUser()
     }
 
-    fun getUserById(){
-        userRepository.getUserById()
+    fun userListener(){
+        userRepository.userListener()
     }
 
 

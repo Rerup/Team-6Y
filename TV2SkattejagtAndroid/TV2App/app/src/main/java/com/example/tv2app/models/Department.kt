@@ -1,7 +1,7 @@
 package com.example.tv2app.models
 
-class Department {
-    constructor(departmentName : String, region : String){
+class Department() {
+    constructor(departmentName : String, region : String) : this() {
         this.departmentName = departmentName
         this.region = region
     }

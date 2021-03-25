@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.tv2app.activities.RegisterActivity
 import com.example.tv2app.databinding.ActivityLoginBinding
+import com.example.tv2app.viewmodels.TaskViewModel
 import com.example.tv2app.viewmodels.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 import org.koin.android.ext.koin.androidContext
@@ -23,6 +24,7 @@ class LoginActivity : AppCompatActivity() {
     //Initialize ViewModel
     private val userViewModel: UserViewModel by viewModel()
 
+
     //Firebase Ref
     lateinit var auth : FirebaseAuth
 
@@ -30,6 +32,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         auth = FirebaseAuth.getInstance()
+
+
 
         //Set Binding to this layout
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -58,6 +62,7 @@ class LoginActivity : AppCompatActivity() {
                     //Sign user into main menu.
                     Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, MainActivity::class.java))
+                    userViewModel.userListener()
 
 
                 }
@@ -70,10 +75,6 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Type in All information", Toast.LENGTH_SHORT)
                         .show()
             }
-
-
-
-
 
         }
 
