@@ -34,7 +34,6 @@ open class TaskRepository {
         db = FirebaseDatabase.getInstance()
         ref = FirebaseDatabase.getInstance().getReference("Tasks")
 
-
         val query = ref.equalTo(id)
 
         if (query.javaClass == TextTask::class){

@@ -91,10 +91,15 @@ class StartFragment : Fragment() {
 
                 val type = taskViewModel.getTypeTask("727SFBN")
 
-                if (type == "TextTask"){
+                if (result.contents == "727SFBN"){
                     findNavController().navigate(R.id.action_startFragment_to_textTaskFragment)
-                    //Open Fragment
                 }
+
+                /*if (type == "TextTask"){
+                    findNavController().navigate(R.id.action_startFragment_to_textTaskFragment)
+                    taskViewModel.setScannedTaskId(result.contents)
+
+                }*/
                 Toast.makeText(context, "Scanned : " + result.contents, Toast.LENGTH_LONG).show()
             }
         }

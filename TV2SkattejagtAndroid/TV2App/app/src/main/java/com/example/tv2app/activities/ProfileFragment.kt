@@ -22,6 +22,7 @@ class ProfileFragment : Fragment() {
     lateinit var auth : FirebaseAuth
 
     private val userViewModel: UserViewModel by viewModel()
+
     private lateinit var binding: FragmentProfileBinding
     private lateinit var db : FirebaseDatabase
     private lateinit var ref : DatabaseReference
