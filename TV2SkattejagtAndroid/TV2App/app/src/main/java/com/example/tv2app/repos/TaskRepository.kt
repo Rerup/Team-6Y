@@ -1,10 +1,10 @@
 package com.example.tv2app.repos
 
+import android.util.Log
 import com.example.tv2app.models.TextTask
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 open class TaskRepository {
 
@@ -22,23 +22,26 @@ open class TaskRepository {
         ref.child(textTask1.taskId).setValue(textTask1)
         ref.child(textTask2.taskId).setValue(textTask2)
 
-
     }
-
 
 
     fun getTypeTask(id : String) : String {
 
+        //TODO FIX THIS SHIT
         var type = ""
 
         db = FirebaseDatabase.getInstance()
         ref = FirebaseDatabase.getInstance().getReference("Tasks")
 
-        val query = ref.equalTo(id)
+        val query = ref.child(id).limitToFirst(1).get()
 
-        if (query.javaClass == TextTask::class){
+        if (query.javaClass.simpleName == "TextTask"){
             type = "TextTask"
         }
+
+        /*else if (query.javaClass.name == "PhotoTask"){
+            type = "PhotoTask"
+        }*/
 
         return type
 

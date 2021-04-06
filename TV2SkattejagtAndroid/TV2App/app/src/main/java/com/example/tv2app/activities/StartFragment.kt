@@ -89,17 +89,19 @@ class StartFragment : Fragment() {
             }
             else {
 
-                val type = taskViewModel.getTypeTask("727SFBN")
+                //val type = taskViewModel.getTypeTask("727SFBN")
+                val type2 = taskViewModel.getTypeTask(result.contents)
 
-                if (result.contents == "727SFBN"){
+               /* if (result.contents == "727SFBN"){
                     findNavController().navigate(R.id.action_startFragment_to_textTaskFragment)
-                }
+                }*/
 
-                /*if (type == "TextTask"){
+                //TODO Keep this shit, but fix other shit in TaskRepo
+                if (type2 == "TextTask"){
                     findNavController().navigate(R.id.action_startFragment_to_textTaskFragment)
                     taskViewModel.setScannedTaskId(result.contents)
 
-                }*/
+                }
                 Toast.makeText(context, "Scanned : " + result.contents, Toast.LENGTH_LONG).show()
             }
         }
