@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_startFragment_to_textTaskFragment"
             app:destination="@id/textTaskFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_quizTaskFragment"
+            app:destination="@id/quizTaskFragment" />
     </fragment>
 
     <!-- LEADERBOARD FRAGMENT -->
@@ -46,6 +49,11 @@
     <fragment
         android:id="@+id/textTaskFragment"
         android:name="com.example.tv2app.activities.TextTaskFragment"
-        android:label="fragment_text_task"
+        android:label="Spørgsmål Opgave"
         tools:layout="@layout/fragment_text_task" />
+    <fragment
+        android:id="@+id/quizTaskFragment"
+        android:name="com.example.tv2app.activities.QuizTaskFragment"
+        android:label="Quiz Opgave"
+        tools:layout="@layout/fragment_quiz_task" />
 </navigation>

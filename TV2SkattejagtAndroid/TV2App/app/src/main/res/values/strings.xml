@@ -31,4 +31,6 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="besvar">Besvar</string>
+    <string name="point_amount">%i Points på spil</string>
 </resources>
