@@ -2,17 +2,18 @@ package com.example.tv2app.activities
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.tv2app.R
 import com.example.tv2app.databinding.FragmentStartBinding
 import com.example.tv2app.viewmodels.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.zxing.integration.android.IntentIntegrator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -27,8 +28,8 @@ class StartFragment : Fragment() {
     private val userViewModel: UserViewModel by viewModel()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
 
         // Inflate the layout XML file and return a binding object instance
@@ -46,11 +47,13 @@ class StartFragment : Fragment() {
         //Binding Elements Here
         val leaderboardButton = binding.leaderbord
         val hintButton = binding.hint
+        val scanButton = binding.scanTreasure
 
 
         //OnClickListeners
         leaderboardButton.setOnClickListener{goToLeaderboard()}
         hintButton.setOnClickListener{goToHintScreen()}
+        scanButton.setOnClickListener{qrScanner()}
     }
 
 
@@ -61,6 +64,36 @@ class StartFragment : Fragment() {
     private fun goToHintScreen(){
         findNavController().navigate(R.id.action_startFragment_to_hintFragment)
     }
+
+
+
+    private fun qrScanner(){
+        val integrator = IntentIntegrator.forSupportFragment(this@StartFragment)
+
+        integrator.setOrientationLocked(false)
+        integrator.setPrompt("Scan QR code")
+        integrator.setBeepEnabled(false)
+        //integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
+
+        integrator.initiateScan()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+        if (result != null) {
+
+            if (result.contents == null) {
+                Toast.makeText(context, "Try again", Toast.LENGTH_LONG).show()
+            }
+            else {
+                
+                Toast.makeText(context, "Scanned : " + result.contents, Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+
+
 
 
 

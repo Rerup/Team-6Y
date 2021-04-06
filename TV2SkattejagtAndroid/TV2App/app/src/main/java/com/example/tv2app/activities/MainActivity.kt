@@ -13,6 +13,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.tv2app.R
 import com.example.tv2app.viewmodels.TaskViewModel
 import com.example.tv2app.viewmodels.UserViewModel
+import com.google.zxing.integration.android.IntentIntegrator
+import com.journeyapps.barcodescanner.CaptureActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
@@ -80,5 +82,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private fun goToProfile(){
         navController.navigate(R.id.action_startFragment_to_profileFragment)
     }
+
+
 
 }
