@@ -69,6 +69,7 @@ class ProfileFragment : Fragment() {
                 }
             })
         }
+
         getCurrentUser(currentUser)
 
         // Inflate the layout for this fragment

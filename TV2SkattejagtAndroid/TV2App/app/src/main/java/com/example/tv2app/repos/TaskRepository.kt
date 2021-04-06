@@ -10,6 +10,7 @@ open class TaskRepository {
 
 
     private lateinit var ref : DatabaseReference
+    private lateinit var db : FirebaseDatabase
 
     fun dummyData(){
 
@@ -23,5 +24,26 @@ open class TaskRepository {
 
 
     }
+
+
+
+    fun getTypeTask(id : String) : String {
+
+        var type = ""
+
+        db = FirebaseDatabase.getInstance()
+        ref = FirebaseDatabase.getInstance().getReference("Tasks")
+
+
+        val query = ref.equalTo(id)
+
+        if (query.javaClass == TextTask::class){
+            type = "TextTask"
+        }
+
+        return type
+
+    }
+
 
 }

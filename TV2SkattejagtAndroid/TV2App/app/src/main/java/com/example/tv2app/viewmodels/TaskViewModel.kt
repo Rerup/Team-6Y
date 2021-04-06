@@ -9,4 +9,9 @@ class TaskViewModel(private val taskRepository : TaskRepository) : ViewModel() {
     fun dummyData(){
         taskRepository.dummyData()
     }
+
+    fun getTypeTask(id : String) : String{
+
+        return taskRepository.getTypeTask(id)
+    }
 }

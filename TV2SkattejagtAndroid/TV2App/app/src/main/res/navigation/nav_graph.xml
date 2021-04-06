@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_startFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_textTaskFragment"
+            app:destination="@id/textTaskFragment" />
     </fragment>
 
     <!-- LEADERBOARD FRAGMENT -->
@@ -40,4 +43,9 @@
         android:name="com.example.tv2app.activities.ProfileFragment"
         android:label="Profil"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/textTaskFragment"
+        android:name="com.example.tv2app.activities.TextTaskFragment"
+        android:label="fragment_text_task"
+        tools:layout="@layout/fragment_text_task" />
 </navigation>

@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.tv2app.R
 import com.example.tv2app.databinding.FragmentStartBinding
+import com.example.tv2app.viewmodels.TaskViewModel
 import com.example.tv2app.viewmodels.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.zxing.integration.android.IntentIntegrator
@@ -26,6 +27,7 @@ class StartFragment : Fragment() {
 
     lateinit var auth : FirebaseAuth
     private val userViewModel: UserViewModel by viewModel()
+    private val taskViewModel : TaskViewModel by viewModel()
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -86,7 +88,13 @@ class StartFragment : Fragment() {
                 Toast.makeText(context, "Try again", Toast.LENGTH_LONG).show()
             }
             else {
-                
+
+                val type = taskViewModel.getTypeTask("727SFBN")
+
+                if (type == "TextTask"){
+                    findNavController().navigate(R.id.action_startFragment_to_textTaskFragment)
+                    //Open Fragment
+                }
                 Toast.makeText(context, "Scanned : " + result.contents, Toast.LENGTH_LONG).show()
             }
         }
