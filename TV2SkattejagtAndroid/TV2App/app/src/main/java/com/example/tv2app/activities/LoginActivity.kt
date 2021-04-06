@@ -33,8 +33,6 @@ class LoginActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-
-
         //Set Binding to this layout
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -62,9 +60,6 @@ class LoginActivity : AppCompatActivity() {
                     //Sign user into main menu.
                     Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, MainActivity::class.java))
-                    userViewModel.userListener()
-
-
                 }
                 else {
                     Toast.makeText(this, "Failed to sign in", Toast.LENGTH_SHORT).show()
@@ -90,6 +85,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart(){
         super.onStart()
+
         //Check to see if User is already logged in, if so go to Main Menu.
         val currentUser = auth.currentUser
         if(currentUser != null)

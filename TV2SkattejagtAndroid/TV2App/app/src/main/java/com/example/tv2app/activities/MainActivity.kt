@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         // display the Up(←) button whenever you're not on a top-level destination.
         setupActionBarWithNavController(navController)
 
-        //Test populate DB with Tasks
+        //Populate DB with Tasks
         taskViewModel.dummyData()
     }
 

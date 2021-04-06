@@ -1,19 +1,19 @@
 package com.example.tv2app.models
 
 class User() {
-    constructor(totalPoints: Int, userIdDb: String, uniqueId: String, departmentId: String) : this() {
-        this.totalPoints = totalPoints
-        this.userIdDb = userIdDb
-        this.uniqueId = uniqueId
-        this.departmentId = departmentId
+    constructor(totalPoints: Int?, uniqueId: String?, departmentId: String?, email : String?, fullName : String?) : this() {
+        this.totalPoints = totalPoints ?:0
+        this.uniqueId = uniqueId ?:""
+        this.departmentId = departmentId ?:""
+        this.email = email ?:""
+        this.fullName  = fullName ?:""
     }
 
-
     var totalPoints: Int = 0
-    var userIdDb: String = ""
     var uniqueId: String = ""
     var departmentId: String = ""
-
+    var email: String = ""
+    var fullName : String = ""
 
 
 }

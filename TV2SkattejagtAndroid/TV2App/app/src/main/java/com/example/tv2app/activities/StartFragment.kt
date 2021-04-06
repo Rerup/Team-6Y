@@ -35,7 +35,6 @@ class StartFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_start, container, false)
 
         auth = FirebaseAuth.getInstance()
-        val user = auth.currentUser
 
         return binding.root
 
@@ -45,13 +44,11 @@ class StartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //Binding Elements Here
-        //val signOutButton = binding.signOut
         val leaderboardButton = binding.leaderbord
         val hintButton = binding.hint
 
 
         //OnClickListeners
-        //signOutButton.setOnClickListener{ signOut() }
         leaderboardButton.setOnClickListener{goToLeaderboard()}
         hintButton.setOnClickListener{goToHintScreen()}
     }

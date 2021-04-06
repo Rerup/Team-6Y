@@ -8,7 +8,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 open class TaskRepository {
 
-    //private lateinit var auth : FirebaseAuth
+
     private lateinit var ref : DatabaseReference
 
     fun dummyData(){

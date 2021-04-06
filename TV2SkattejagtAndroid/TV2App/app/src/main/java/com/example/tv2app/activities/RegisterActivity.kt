@@ -41,6 +41,7 @@ class RegisterActivity : AppCompatActivity() {
         val passwordInput = binding.passwordInputRegister
         val confirmPassword = binding.confirmPassword
         val uniqueId = binding.uniqueId
+        val fullName = binding.fullName
         val rbDigital = binding.rbDigitial
         val rbJournalist = binding.rbJournalist
         val rbBooster = binding.rbBooster
@@ -48,14 +49,12 @@ class RegisterActivity : AppCompatActivity() {
         val rbKøbenhavn = binding.rbCopenhagen
         val departmentGroup = binding.radioGroupDepartment
         val jobGroup = binding.radioGroupJob
-        //To check if account has been created correctly.
-
 
 
         //User created if success
         registerLogin.setOnClickListener {
             if (emailInput.text?.trim()?.isEmpty() == true || passwordInput.text?.trim()?.isEmpty() == true
-               || confirmPassword.text?.trim()?.isEmpty() == true || uniqueId.text?.trim()?.isEmpty() == true || departmentGroup.isEmpty() || jobGroup.isEmpty()
+               || confirmPassword.text?.trim()?.isEmpty() == true || uniqueId.text?.trim()?.isEmpty() == true || departmentGroup.isEmpty() || jobGroup.isEmpty() || fullName.text?.trim()?.isEmpty() == true
             ) {
                 Toast.makeText(applicationContext, "Fill in all information", Toast.LENGTH_SHORT)
                         .show()
@@ -72,8 +71,8 @@ class RegisterActivity : AppCompatActivity() {
             }
             else {
 
-                    userViewModel.createUser(emailInput.text?.trim().toString(), passwordInput.text?.trim().toString(), departmentGroup.checkedRadioButtonId.toString(),
-                            uniqueId.text?.trim().toString())
+                    userViewModel.createUser(emailInput.text?.trim().toString(), passwordInput.text?.trim().toString() , departmentGroup.checkedRadioButtonId.toString(),
+                            uniqueId.text?.trim().toString(), fullName.text?.trim().toString())
 
                      //Makes sure that user is retrieved before trying to login
                      Thread.sleep(700)
