@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -16,6 +17,7 @@ import com.example.tv2app.viewmodels.UserViewModel
 import com.google.zxing.integration.android.IntentIntegrator
 import com.journeyapps.barcodescanner.CaptureActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
@@ -37,6 +39,22 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         // Show a title in the app bar based off of the destination's label, and
         // display the Up(←) button whenever you're not on a top-level destination.
         setupActionBarWithNavController(navController)
+
+        // Set up bottom navigation bar
+        val hintFragment = HintFragment()
+        val homeFragment = StartFragment()
+        val leaderboardFragment = LeaderboardFragment()
+
+        setCurrentFragment(homeFragment)
+
+        bottomNavigationView.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.hint->setCurrentFragment(hintFragment)
+                R.id.home->setCurrentFragment(homeFragment)
+                R.id.leaderbord2->setCurrentFragment(leaderboardFragment)
+            }
+            true
+        }
 
         //Populate DB with Tasks
         taskViewModel.dummyData()
@@ -82,6 +100,13 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private fun goToProfile(){
         navController.navigate(R.id.action_startFragment_to_profileFragment)
     }
+
+    // Metode til bottom navigation baren
+    private fun setCurrentFragment(fragment: Fragment) =
+        supportFragmentManager.beginTransaction().apply{
+            replace(R.id.nav_host_fragment,fragment)
+            commit()
+        }
 
 
 
