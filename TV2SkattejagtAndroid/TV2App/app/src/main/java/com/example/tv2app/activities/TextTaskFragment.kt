@@ -62,8 +62,7 @@ class TextTaskFragment : Fragment() {
 
                     val task = snapshot
                     val currentTaskObject = task.getValue(TextTask::class.java)
-                    binding.points = getString(R.string.point_amount, currentTaskObject?.point)
-                            ?: ""
+                    binding.points = getString(R.string.point_amount, currentTaskObject?.point) ?: ""
                     binding.question = currentTaskObject?.description ?: ""
 
                     Log.i("DB READ", "point: ${binding.points}, question: ${binding.question}")
@@ -76,8 +75,9 @@ class TextTaskFragment : Fragment() {
             })
         }
 
-        //TODO need fix
-        //getCurrentTask(currentTask)
+        getCurrentTask(taskViewModel.scannedTaskId.toString())
+
+        //TODO Fun Tjek om input er rigtig fra brugeren og giv point, hvis rigtig
 
         return binding.root
     }
