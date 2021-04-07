@@ -25,114 +25,108 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".activities.ProfileFragment">
 
     <ImageView
         android:id="@+id/logo"
         android:layout_width="84dp"
         android:layout_height="79dp"
-        android:scaleX="2"
-        android:scaleY="2"
-        android:layout_gravity="center_horizontal"
         android:importantForAccessibility="no"
         android:src="@drawable/ic_action_name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.058" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
 
     <TextView
         android:id="@+id/emailProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/notosansbold"
         android:text="@{email}"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.43"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.441"
+        android:layout_marginStart="180dp"
+        app:layout_constraintStart_toEndOf="@id/icon_email"
+        app:layout_constraintBaseline_toBaselineOf="@id/emailHolder"
         tools:text="Email var" />
 
+    <ImageView
+        android:id="@+id/icon_fullName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="@id/firstName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/firstName"
+        app:srcCompat="@drawable/ic_baseline_person_24"/>
 
     <TextView
         android:id="@+id/fullNameVar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/notosansbold"
         android:text="@{fullName}"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.459"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.379"
-        tools:text="fullName var" />
+        android:layout_marginStart="180dp"
+        app:layout_constraintStart_toEndOf="@id/icon_fullName"
+        app:layout_constraintBaseline_toBaselineOf="@id/firstName"
+        tools:text="FullName var" />
+
 
     <TextView
         android:id="@+id/firstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/notosansbold"
         android:text="First Name"
         android:textColor="#EF5454"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.16"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.379" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="215dp"
+        app:layout_constraintStart_toEndOf="@id/icon_fullName"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/idProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/notosansbold"
         android:text="@{id}"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.381"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.612"
-        tools:text="ID" />
+        android:layout_marginStart="180dp"
+        app:layout_constraintStart_toEndOf="@id/icon_id"
+        app:layout_constraintBaseline_toBaselineOf="@id/idHolder"
+        tools:text="ID var" />
 
     <TextView
         android:id="@+id/totalPointsProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/notosansbold"
         android:text="@{Integer.toString(points)}"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.83"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.744"
-        tools:text="Points" />
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@id/pointsHolder"
+        app:layout_constraintBaseline_toBaselineOf="@id/pointsHolder"
+        tools:text="0" />
 
     <TextView
         android:id="@+id/treasureFound"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/notosansbold"
         android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.467"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.744"
-        tools:text="Scanned var" />
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@id/totalscannedHolder"
+        app:layout_constraintBaseline_toBaselineOf="@id/totalscannedHolder"
+        tools:text="0" />
 
     <TextView
         android:id="@+id/departmentProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/notosansbold"
         android:text="@{department}"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.477"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="departmentvar" />
+        android:layout_marginStart="180dp"
+        app:layout_constraintStart_toEndOf="@id/icon_department"
+        app:layout_constraintBaseline_toBaselineOf="@id/departmentHolder"
+        tools:text="Department var" />
 
     <TextView
         android:id="@+id/profileHeadLine"
@@ -141,6 +135,7 @@
         android:text="Profil"
         android:textColor="#EF5454"
         android:textSize="24sp"
+        android:fontFamily="@font/notosansbold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -148,83 +143,121 @@
         app:layout_constraintTop_toBottomOf="@+id/logo"
         app:layout_constraintVertical_bias="0.066" />
 
+    <ImageView
+        android:id="@+id/icon_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="@id/emailHolder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/emailHolder"
+        app:srcCompat="@drawable/ic_baseline_email_24"/>
+
     <TextView
         android:id="@+id/emailHolder"
         android:layout_width="wrap_content"
         android:textColor="#EF5454"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/notosansbold"
         android:text="Email"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.146"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="@id/firstName"
+        app:layout_constraintTop_toBottomOf="@id/firstName"/>
+
+    <ImageView
+        android:id="@+id/icon_department"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="@id/departmentHolder"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.441" />
+        app:layout_constraintTop_toTopOf="@id/departmentHolder"
+        app:srcCompat="@drawable/ic_baseline_corporate_fare_24"/>
 
     <TextView
         android:id="@+id/departmentHolder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/notosansbold"
         android:text="Department"
         android:textColor="#EF5454"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="@id/emailHolder"
+        app:layout_constraintTop_toBottomOf="@id/emailHolder"/>
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.163"
+    <ImageView
+        android:id="@+id/icon_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="@id/idHolder"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/idHolder"
+        app:srcCompat="@drawable/ic_baseline_lock_24"/>
 
     <TextView
         android:id="@+id/idHolder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TV2 ID"
+        android:fontFamily="@font/notosansbold"
         android:textColor="#EF5454"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.149"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="@id/jobHolder"
+        app:layout_constraintTop_toBottomOf="@id/jobHolder" />
+
+    <ImageView
+        android:id="@+id/icon_job"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="@id/jobHolder"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.612" />
+        app:layout_constraintTop_toTopOf="@id/jobHolder"
+        app:srcCompat="@drawable/ic_baseline_work_24"/>
 
     <TextView
         android:id="@+id/jobHolder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Job"
+        android:fontFamily="@font/notosansbold"
         android:textColor="#EF5454"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.142"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.561" />
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="@id/departmentHolder"
+        app:layout_constraintTop_toBottomOf="@id/departmentHolder" />
 
     <TextView
         android:id="@+id/pointsHolder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Points"
+        android:fontFamily="@font/notosansbold"
         android:textColor="#EF5454"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.687"
+        android:layout_marginStart="180dp"
+        app:layout_constraintStart_toEndOf="@id/icon_stats"
+        app:layout_constraintBaseline_toBaselineOf="@id/totalscannedHolder" />
+
+    <ImageView
+        android:id="@+id/icon_stats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="@id/totalscannedHolder"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.744" />
+        app:layout_constraintTop_toTopOf="@id/totalscannedHolder"
+        app:srcCompat="@drawable/ic_baseline_query_stats_24"/>
 
     <TextView
         android:id="@+id/totalscannedHolder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Total Scanned"
+        android:fontFamily="@font/notosansbold"
         android:textColor="#EF5454"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.17"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.744" />
+        android:layout_marginTop="140dp"
+        app:layout_constraintStart_toStartOf="@id/idHolder"
+        app:layout_constraintTop_toBottomOf="@id/idHolder"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
