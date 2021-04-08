@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LiveData
 import com.example.tv2app.R
 import com.example.tv2app.databinding.FragmentProfileBinding
 import com.example.tv2app.databinding.FragmentTextTaskBinding
@@ -18,6 +19,7 @@ import com.example.tv2app.viewmodels.UserViewModel
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -25,7 +27,7 @@ class TextTaskFragment : Fragment() {
 
     lateinit var auth: FirebaseAuth
 
-    private val taskViewModel: TaskViewModel by activityViewModels()
+    private val taskViewModel: TaskViewModel by sharedViewModel()
 
     private lateinit var binding: FragmentTextTaskBinding
     private lateinit var db: FirebaseDatabase
@@ -45,7 +47,7 @@ class TextTaskFragment : Fragment() {
         //auth = FirebaseAuth.getInstance()
 
         // Inflate the layout XML file and return a binding object instance
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_text_task, container, false)
 
 
         //TODO Jacobo er der bruge for dette? Yuis, når vi skal belønne brugeren med point
@@ -55,14 +57,15 @@ class TextTaskFragment : Fragment() {
 
         fun getCurrentTask(id: String) {
             db = FirebaseDatabase.getInstance()
-            ref = db.reference.child("Tasks")
+            ref = db.reference.child("Tasks").child("TextTask")
             ref.child(id).addListenerForSingleValueEvent(object : ValueEventListener {
 
                 override fun onDataChange(snapshot: DataSnapshot) {
 
                     val task = snapshot
                     val currentTaskObject = task.getValue(TextTask::class.java)
-                    binding.points = getString(R.string.point_amount, currentTaskObject?.point) ?: ""
+                    // binding.points = currentTaskObject?.point ?: 0
+                    binding.points = "${currentTaskObject?.point} points på højkant!" ?: ""
                     binding.question = currentTaskObject?.description ?: ""
 
                     Log.i("DB READ", "point: ${binding.points}, question: ${binding.question}")
@@ -75,7 +78,11 @@ class TextTaskFragment : Fragment() {
             })
         }
 
-        getCurrentTask(taskViewModel.scannedTaskId.toString())
+
+
+        getCurrentTask(taskViewModel._scannedTaskId)
+
+
 
         //TODO Fun Tjek om input er rigtig fra brugeren og giv point, hvis rigtig
 

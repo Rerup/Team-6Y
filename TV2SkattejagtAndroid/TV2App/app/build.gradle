@@ -12,6 +12,7 @@ android {
         dataBinding = true
     }
 
+
     defaultConfig {
         applicationId "com.example.tv2app"
         minSdkVersion 25

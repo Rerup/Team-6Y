@@ -42,7 +42,7 @@
                 android:fontFamily="@font/notosansbold"
                 android:textColor="@color/red"
                 android:textSize="15sp"
-                android:text="@{points}"
+                android:text= "@{points}"
                 tools:text="5 Points På Spil"/>
 
             <TextView

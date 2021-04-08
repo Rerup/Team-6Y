@@ -15,6 +15,7 @@ import com.example.tv2app.viewmodels.TaskViewModel
 import com.example.tv2app.viewmodels.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.zxing.integration.android.IntentIntegrator
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -27,7 +28,7 @@ class StartFragment : Fragment() {
 
     lateinit var auth : FirebaseAuth
     private val userViewModel: UserViewModel by viewModel()
-    private val taskViewModel : TaskViewModel by viewModel()
+    private val taskViewModel : TaskViewModel by sharedViewModel()
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -89,19 +90,25 @@ class StartFragment : Fragment() {
             }
             else {
 
-                //val type = taskViewModel.getTypeTask("727SFBN")
-                val type2 = taskViewModel.getTypeTask(result.contents)
+                // val type = taskViewModel.getTypeTask("727SFBN")
+                // val type2 = taskViewModel.getTypeTask(result.contents)
 
-               /* if (result.contents == "727SFBN"){
+               if (result.contents == "727SFBN"){
                     findNavController().navigate(R.id.action_startFragment_to_textTaskFragment)
-                }*/
+                    taskViewModel.setScannedTaskId(result.contents.toString())
+                }
+
+                else if (result.contents == "834683fsa"){
+                   findNavController().navigate(R.id.action_startFragment_to_textTaskFragment)
+                   taskViewModel.setScannedTaskId(result.contents.toString())
+               }
 
                 //TODO Keep this shit, but fix other shit in TaskRepo
-                if (type2 == "TextTask"){
+                /*if (type2 == "TextTask"){
                     findNavController().navigate(R.id.action_startFragment_to_textTaskFragment)
                     taskViewModel.setScannedTaskId(result.contents)
 
-                }
+                }*/
                 Toast.makeText(context, "Scanned : " + result.contents, Toast.LENGTH_LONG).show()
             }
         }

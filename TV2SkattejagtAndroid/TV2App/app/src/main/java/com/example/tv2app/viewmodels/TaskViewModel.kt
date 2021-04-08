@@ -7,8 +7,11 @@ import com.example.tv2app.repos.TaskRepository
 
 class TaskViewModel(private val taskRepository : TaskRepository) : ViewModel() {
 
-    private val _scannedTaskId = MutableLiveData<String>()
-    val scannedTaskId : LiveData<String> = _scannedTaskId
+    //private val _scannedTaskId = MutableLiveData<String>()
+    //val scannedTaskId : LiveData<String> = _scannedTaskId
+
+     var _scannedTaskId : String = ""
+
 
 
     fun dummyData(){
@@ -20,7 +23,7 @@ class TaskViewModel(private val taskRepository : TaskRepository) : ViewModel() {
         return taskRepository.getTypeTask(id)
     }
 
-    fun setScannedTaskId(id : String) {
-        _scannedTaskId.value = id
+        fun setScannedTaskId(id : String) {
+        _scannedTaskId = id
     }
 }
