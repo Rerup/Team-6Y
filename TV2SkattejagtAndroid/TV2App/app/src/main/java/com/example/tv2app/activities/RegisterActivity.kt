@@ -47,6 +47,7 @@ class RegisterActivity : AppCompatActivity() {
         val rbBooster = binding.rbBooster
         val rbFyn = binding.rbFyn
         val rbKøbenhavn = binding.rbCopenhagen
+
         val departmentGroup = binding.radioGroupDepartment
         val jobGroup = binding.radioGroupJob
 
@@ -71,7 +72,7 @@ class RegisterActivity : AppCompatActivity() {
             }
             else {
 
-                    userViewModel.createUser(emailInput.text?.trim().toString(), passwordInput.text?.trim().toString() , departmentGroup.checkedRadioButtonId.toString(),
+                    userViewModel.createUser(emailInput.text?.trim().toString(), passwordInput.text?.trim().toString() , departmentGroup.checkedRadioButtonId.toString(), jobGroup.checkedRadioButtonId.toString(),
                             uniqueId.text?.trim().toString(), fullName.text?.trim().toString())
 
                      //Makes sure that user is retrieved before trying to login

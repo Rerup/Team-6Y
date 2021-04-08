@@ -39,9 +39,10 @@ class ProfileFragment : Fragment() {
         // Inflate the layout XML file and return a binding object instance
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
 
+
+
         //Track current User
         val currentUser = auth.currentUser?.uid ?:""
-
 
         //Layout Elements
         //Show Profile according to current user.
@@ -60,6 +61,7 @@ class ProfileFragment : Fragment() {
                     binding.department = currentUserObject?.departmentId ?:""
                     binding.points = currentUserObject?.totalPoints ?:0
                     binding.fullName = currentUserObject?.fullName ?:""
+                    binding.job = currentUserObject?.job ?:""
 
                     Log.i("DB READ", "email: ${binding.email}, tv2id: ${binding.id}  department: ${binding.department}  totalPoints: ${binding.points}, Name: ${binding.fullName}")
                 }

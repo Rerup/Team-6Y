@@ -10,8 +10,8 @@ import com.example.tv2app.repos.UserRepository
 class UserViewModel(private val userRepository : UserRepository) : ViewModel() {
 
 
-    fun createUser(email: String, password: String, department: String, id: String, fullName : String) {
-        userRepository.createUser(email, password, department, id, fullName)
+    fun createUser(email: String, password: String, department: String, id: String, fullName : String, job : String) {
+        userRepository.createUser(email, password, department, id, fullName, job)
 
     }
 

@@ -19,6 +19,9 @@
         <variable
             name="fullName"
             type="String" />
+        <variable
+            name="job"
+            type="String" />
 
     </data>
 
@@ -132,7 +135,7 @@
         android:id="@+id/profileHeadLine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profil"
+        android:text="Profile"
         android:textColor="#EF5454"
         android:textSize="24sp"
         android:fontFamily="@font/notosansbold"
@@ -258,6 +261,18 @@
         android:layout_marginTop="140dp"
         app:layout_constraintStart_toStartOf="@id/idHolder"
         app:layout_constraintTop_toBottomOf="@id/idHolder"/>
+
+    <TextView
+        android:id="@+id/jobProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:fontFamily="@font/notosansbold"
+        android:text="@{job}"
+        app:layout_constraintBaseline_toBaselineOf="@id/jobHolder"
+        app:layout_constraintStart_toEndOf="@id/jobHolder"
+        tools:text="Job var" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

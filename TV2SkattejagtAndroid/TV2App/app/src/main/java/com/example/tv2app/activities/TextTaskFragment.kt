@@ -41,14 +41,14 @@ class TextTaskFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
 
-        //TODO Jacob what is this??
+        //TODO Jacob what is this?? Reference til Authenticatoren
         //auth = FirebaseAuth.getInstance()
 
         // Inflate the layout XML file and return a binding object instance
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
 
 
-        //TODO Jacobo er der bruge for dette?
+        //TODO Jacobo er der bruge for dette? Yuis, når vi skal belønne brugeren med point
         //Track current User
         //val currentUser = auth.currentUser?.uid ?:""
 

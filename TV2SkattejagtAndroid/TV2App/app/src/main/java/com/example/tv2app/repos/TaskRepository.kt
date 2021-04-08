@@ -39,9 +39,9 @@ open class TaskRepository {
             type = "TextTask"
         }
 
-        /*else if (query.javaClass.name == "PhotoTask"){
+        else if (query.javaClass.simpleName == "QuizTask"){
             type = "PhotoTask"
-        }*/
+        }
 
         return type
 

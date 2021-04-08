@@ -18,7 +18,7 @@ open class UserRepository {
 
 
     //Create an account with the params the user gave. Firebase saves Auth User to DB and User Object.
-    fun createUser(email: String, password : String, department: String, id: String, fullName: String){
+    fun createUser(email: String, password : String, department: String, id: String, fullName: String, job : String){
 
         //Authentication Instance.
         auth = FirebaseAuth.getInstance()
@@ -34,7 +34,7 @@ open class UserRepository {
             val idDb = auth.currentUser?.uid ?:""
 
             //Create the User object with these Params, standard is 0 point when account is created.
-            val user = User(totalPoints = 0, departmentId = department, uniqueId = id, email = email, fullName = fullName)
+            val user = User(totalPoints = 0, departmentId = department, uniqueId = id, email = email, fullName = fullName, job = job)
 
             //Save object to this location and set the values of the object given by the user.
             ref.child(idDb).setValue(user)
