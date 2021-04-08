@@ -89,19 +89,33 @@ class StartFragment : Fragment() {
                 Toast.makeText(context, "Try again", Toast.LENGTH_LONG).show()
             }
             else {
+                taskViewModel.saveQRContent(result.contents.toString())
 
-                // val type = taskViewModel.getTypeTask("727SFBN")
-                // val type2 = taskViewModel.getTypeTask(result.contents)
+                val type = taskViewModel.splitQRCode(taskViewModel._scannedQRContents)
 
-               if (result.contents == "727SFBN"){
+                when (type){
+                    "Text" -> {
+                        findNavController().navigate(R.id.action_startFragment_to_textTaskFragment)
+                    }
+                    "Quiz" -> {
+                        findNavController().navigate(R.id.action_startFragment_to_quizTaskFragment)
+                    }
+                    else -> {
+                        Toast.makeText(context, "No QR code found", Toast.LENGTH_LONG).show()
+                    }
+
+                }
+
+               /*if (result.contents == "727SFBN"){
                     findNavController().navigate(R.id.action_startFragment_to_textTaskFragment)
-                    taskViewModel.setScannedTaskId(result.contents.toString())
+                    taskViewModel.saveQRContent(result.contents.toString())
                 }
 
                 else if (result.contents == "834683fsa"){
                    findNavController().navigate(R.id.action_startFragment_to_textTaskFragment)
-                   taskViewModel.setScannedTaskId(result.contents.toString())
-               }
+                   taskViewModel.saveQRContent(result.contents.toString())
+
+               }*/
 
                 //TODO Keep this shit, but fix other shit in TaskRepo
                 /*if (type2 == "TextTask"){

@@ -11,7 +11,7 @@ class TaskViewModel(private val taskRepository : TaskRepository) : ViewModel() {
     //val scannedTaskId : LiveData<String> = _scannedTaskId
 
      var _scannedTaskId : String = ""
-
+     var _scannedQRContents : String = ""
 
 
     fun dummyData(){
@@ -23,7 +23,17 @@ class TaskViewModel(private val taskRepository : TaskRepository) : ViewModel() {
         return taskRepository.getTypeTask(id)
     }
 
-        fun setScannedTaskId(id : String) {
-        _scannedTaskId = id
+        fun saveQRContent(qr : String) {
+            _scannedQRContents = qr
+    }
+
+    fun splitQRCode(qrContents: String) : String {
+
+        val split = qrContents.split(",")
+        _scannedTaskId = split[0]
+        val taskType = split[1]
+
+        return taskType
+
     }
 }

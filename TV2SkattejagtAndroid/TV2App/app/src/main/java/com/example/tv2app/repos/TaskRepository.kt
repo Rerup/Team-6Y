@@ -37,16 +37,17 @@ open class TaskRepository {
         var type = ""
 
         db = FirebaseDatabase.getInstance()
-        ref = FirebaseDatabase.getInstance().getReference("Tasks")
+        ref = FirebaseDatabase.getInstance().getReference("Tasks").child("TextTask")
 
         val query = ref.child(id).limitToFirst(1).get()
+
 
         if (query.javaClass.simpleName == "TextTask"){
             type = "TextTask"
         }
 
         else if (query.javaClass.simpleName == "QuizTask"){
-            type = "PhotoTask"
+            type = "QuizTask"
         }
 
         return type
