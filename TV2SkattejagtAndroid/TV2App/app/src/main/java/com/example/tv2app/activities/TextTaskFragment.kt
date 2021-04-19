@@ -14,6 +14,7 @@ import com.example.tv2app.databinding.FragmentProfileBinding
 import com.example.tv2app.databinding.FragmentTextTaskBinding
 import com.example.tv2app.models.TextTask
 import com.example.tv2app.models.User
+import com.example.tv2app.services.QRService
 import com.example.tv2app.viewmodels.TaskViewModel
 import com.example.tv2app.viewmodels.UserViewModel
 import com.google.android.gms.tasks.Task
@@ -28,6 +29,7 @@ class TextTaskFragment : Fragment() {
     lateinit var auth: FirebaseAuth
 
     private val taskViewModel: TaskViewModel by sharedViewModel()
+    private lateinit var _qrService : QRService
 
     private lateinit var binding: FragmentTextTaskBinding
     private lateinit var db: FirebaseDatabase
@@ -43,50 +45,35 @@ class TextTaskFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
 
-        //TODO Jacob what is this?? Reference til Authenticatoren
+
         //auth = FirebaseAuth.getInstance()
 
         // Inflate the layout XML file and return a binding object instance
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_text_task, container, false)
 
+        showTaskData()
 
-        //TODO Jacobo er der bruge for dette? Yuis, når vi skal belønne brugeren med point
         //Track current User
         //val currentUser = auth.currentUser?.uid ?:""
 
 
-        fun getCurrentTask(id: String) {
-            db = FirebaseDatabase.getInstance()
-            ref = db.reference.child("Tasks").child("TextTask")
-            ref.child(id).addListenerForSingleValueEvent(object : ValueEventListener {
-
-                override fun onDataChange(snapshot: DataSnapshot) {
-
-                    val task = snapshot
-                    val currentTaskObject = task.getValue(TextTask::class.java)
-                    // binding.points = currentTaskObject?.point ?: 0
-                    binding.points = "${currentTaskObject?.point} points på højkant!" ?: ""
-                    binding.question = currentTaskObject?.description ?: ""
-
-                    Log.i("DB READ", "point: ${binding.points}, question: ${binding.question}")
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    //Handle the error
-                    Log.i("DB READ", error.message)
-                }
-            })
-        }
-
-
-
-        getCurrentTask(taskViewModel._scannedTaskId)
-
-
-
-        //TODO Fun Tjek om input er rigtig fra brugeren og giv point, hvis rigtig
 
         return binding.root
     }
+
+    private fun showTaskData(){
+        //Reference to QR Service
+        val qrService = _qrService
+        //Get Current TextTask from the scanned QR Contents via Id.
+        taskViewModel.getCurrentTask(qrService._scannedTaskId)
+        //Fetching the object
+        val taskObject = taskViewModel.fetchTaskToView()
+
+        binding.points = "${taskObject?.point} points på højkant!" ?: ""
+        binding.question = taskObject?.description ?: ""
+
+    }
+
+    //TODO Fun Tjek om input er rigtig fra brugeren og giv point, hvis rigtig
 
 }

@@ -19,7 +19,7 @@ namespace RepetitionAPI.Repos
             context.Add(new Gift
             {
                 Title = "Dukke",
-                Description = "Barbie med store kasser og små fødder",
+                Description = "Minder lidt om en Barbie",
                 BoyGift = false,
                 GirlGift = true,
                 GiftNumber = 1,

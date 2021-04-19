@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.tv2app.R
 import com.example.tv2app.databinding.FragmentStartBinding
+import com.example.tv2app.services.QRService
 import com.example.tv2app.viewmodels.TaskViewModel
 import com.example.tv2app.viewmodels.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -29,6 +30,7 @@ class StartFragment : Fragment() {
     lateinit var auth : FirebaseAuth
     private val userViewModel: UserViewModel by viewModel()
     private val taskViewModel : TaskViewModel by sharedViewModel()
+    private lateinit var _qrService : QRService
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +53,7 @@ class StartFragment : Fragment() {
         val leaderboardButton = binding.leaderbord
         val hintButton = binding.hint
         val scanButton = binding.scanTreasure
+
 
 
         //OnClickListeners
@@ -89,11 +92,14 @@ class StartFragment : Fragment() {
                 Toast.makeText(context, "Try again", Toast.LENGTH_LONG).show()
             }
             else {
-                taskViewModel.saveQRContent(result.contents.toString())
+                //Services
+                val qrService = _qrService
+                qrService.saveQRContent(result.contents.toString())
 
-                val type = taskViewModel.splitQRCode(taskViewModel._scannedQRContents)
+                //taskViewModel.saveQRContent(result.contents.toString())
+                //val type = taskViewModel.splitQRCode(taskViewModel._scannedQRContents)
 
-                when (type){
+                when (qrService.splitQRCode(qrService._scannedQRContents)){
                     "Text" -> {
                         findNavController().navigate(R.id.action_startFragment_to_textTaskFragment)
                     }
@@ -106,31 +112,10 @@ class StartFragment : Fragment() {
 
                 }
 
-               /*if (result.contents == "727SFBN"){
-                    findNavController().navigate(R.id.action_startFragment_to_textTaskFragment)
-                    taskViewModel.saveQRContent(result.contents.toString())
-                }
-
-                else if (result.contents == "834683fsa"){
-                   findNavController().navigate(R.id.action_startFragment_to_textTaskFragment)
-                   taskViewModel.saveQRContent(result.contents.toString())
-
-               }*/
-
-                //TODO Keep this shit, but fix other shit in TaskRepo
-                /*if (type2 == "TextTask"){
-                    findNavController().navigate(R.id.action_startFragment_to_textTaskFragment)
-                    taskViewModel.setScannedTaskId(result.contents)
-
-                }*/
                 Toast.makeText(context, "Scanned : " + result.contents, Toast.LENGTH_LONG).show()
             }
         }
     }
-
-
-
-
 
 
 }

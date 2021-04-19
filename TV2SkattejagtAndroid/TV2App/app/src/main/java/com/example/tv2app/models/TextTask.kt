@@ -3,14 +3,14 @@ package com.example.tv2app.models
 import com.example.tv2app.interfaces.Task
 
 class TextTask() : Task {
-    constructor(nameTask: String, point: Int, description: String, location: String, taskId: String, answer : String, solution : String) : this() {
-        this.nameTask = nameTask
-        this.point = point
-        this.description = description
-        this.location = location
-        this.taskId = taskId
-        this.answer = answer
-        this.solution = solution
+    constructor(nameTask: String?, point: Int?, description: String?, location: String?, taskId: String?, answer : String?, solution : String?) : this() {
+        this.nameTask = nameTask ?:""
+        this.point = point ?:0
+        this.description = description ?:""
+        this.location = location ?:""
+        this.taskId = taskId ?:""
+        this.answer = answer ?:""
+        this.solution = solution ?:""
     }
 
     override var nameTask: String = ""

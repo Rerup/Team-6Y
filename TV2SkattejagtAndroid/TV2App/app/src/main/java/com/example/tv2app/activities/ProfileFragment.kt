@@ -39,41 +39,8 @@ class ProfileFragment : Fragment() {
         // Inflate the layout XML file and return a binding object instance
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
 
-
-
-        //Track current User
-        val currentUser = auth.currentUser?.uid ?:""
-
-        //Layout Elements
-        //Show Profile according to current user.
-        fun getCurrentUser(id : String) {
-
-            db = FirebaseDatabase.getInstance()
-            ref = db.reference.child("Users")
-            ref.child(id).addListenerForSingleValueEvent(object : ValueEventListener{
-
-                override fun onDataChange(snapshot: DataSnapshot) {
-
-                    val user = snapshot
-                    val currentUserObject = user.getValue(User::class.java)
-                    binding.email = currentUserObject?.email ?:""
-                    binding.id = currentUserObject?.uniqueId ?:""
-                    binding.department = currentUserObject?.departmentId ?:""
-                    binding.points = currentUserObject?.totalPoints ?:0
-                    binding.fullName = currentUserObject?.fullName ?:""
-                    binding.job = currentUserObject?.job ?:""
-
-                    Log.i("DB READ", "email: ${binding.email}, tv2id: ${binding.id}  department: ${binding.department}  totalPoints: ${binding.points}, Name: ${binding.fullName}")
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    //Handle the error
-                    Log.i("DB READ", error.message)
-                }
-            })
-        }
-
-        getCurrentUser(currentUser)
+        //Populate view with corresponding user values.
+        showProfileData()
 
         // Inflate the layout for this fragment
         return binding.root
@@ -84,6 +51,31 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
+    }
+
+    private fun showProfileData() {
+
+        //Track current User
+        val currentUser = auth.currentUser?.uid ?:""
+
+        //Get current user values with currently logged in userID.
+        userViewModel.getCurrentUser(currentUser)
+
+        //Fetches the user object so that we can populate the view.
+        val userObject = userViewModel.fetchUserToView()
+
+        //Binding view elements with corresponding values.
+        binding.email = userObject?.email ?:""
+        binding.id = userObject?.uniqueId ?:""
+        binding.department = userObject?.departmentId ?:""
+        binding.points = userObject?.totalPoints ?:0
+        binding.fullName = userObject?.fullName ?:""
+        binding.job = userObject?.job ?:""
+
+        //Logging the data for testing
+        Log.i("DB READ", "email: ${binding.email}, tv2id: ${binding.id}  department: ${binding.department}  totalPoints: ${binding.points}, Name: ${binding.fullName}, Job: ${binding.job}")
 
 
     }

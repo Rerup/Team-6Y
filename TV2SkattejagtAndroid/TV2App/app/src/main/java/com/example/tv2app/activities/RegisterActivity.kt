@@ -72,8 +72,8 @@ class RegisterActivity : AppCompatActivity() {
             }
             else {
 
-                    userViewModel.createUser(emailInput.text?.trim().toString(), passwordInput.text?.trim().toString() , departmentGroup.checkedRadioButtonId.toString(), jobGroup.checkedRadioButtonId.toString(),
-                            uniqueId.text?.trim().toString(), fullName.text?.trim().toString())
+                    userViewModel.createUser(emailInput.text?.trim().toString(), passwordInput.text?.trim().toString() , departmentGroup.checkedRadioButtonId.toString(),
+                            uniqueId.text?.trim().toString(), fullName.text?.trim().toString(), jobGroup.checkedRadioButtonId.toString())
 
                      //Makes sure that user is retrieved before trying to login
                      Thread.sleep(700)

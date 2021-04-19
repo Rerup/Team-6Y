@@ -34,6 +34,6 @@ namespace RepetitionAPI.Models
 
 
         }
-        public DbSet<RepetitionAPI.Models.Gift> Gifts { get; set; }
+        public DbSet<Gift> Gifts { get; set; }
     }
 }

@@ -13,8 +13,10 @@ open class UserRepository {
     private lateinit var auth : FirebaseAuth
     private lateinit var ref : DatabaseReference
     private lateinit var db : FirebaseDatabase
-    private lateinit var allUsers : MutableList<User?>
 
+    var userObject : User? = User(null, null,null,null,null,null)
+
+    //Companion Object
 
 
     //Create an account with the params the user gave. Firebase saves Auth User to DB and User Object.
@@ -71,6 +73,53 @@ open class UserRepository {
             }
         }
 
+    }
+
+    fun getCurrentUser(id : String) {
+        db = FirebaseDatabase.getInstance()
+        ref = db.reference.child("Users")
+        ref.child(id).addListenerForSingleValueEvent(object : ValueEventListener{
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                val user = snapshot
+                val currentUserObject = user.getValue(User::class.java)
+
+                //Variable used in ViewModel so that it can be used in view.
+                userObject = currentUserObject
+
+                if (userObject == null){
+
+                    Log.i("DB READ", "User Object Variable is currently null, async call.")
+                }
+                else {
+                    fetchUserToView(userObject)
+                }
+
+                //Check to see if we are getting values.
+                val email = currentUserObject?.email ?:""
+                val uniqueId = currentUserObject?.uniqueId ?:""
+                val department = currentUserObject?.departmentId ?:""
+                val points = currentUserObject?.totalPoints ?:0
+                val fullName = currentUserObject?.fullName ?:""
+                val job = currentUserObject?.job ?:""
+
+
+
+
+                Log.i("DB READ", "email: $email, tv2id: $uniqueId  department: $department  totalPoints: $points, Name: $fullName, Job: $job")
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                //Handle the error
+                Log.i("DB READ", error.message)
+            }
+        })
+
+    }
+
+    fun fetchUserToView(user : User?) : User? {
+        return user
     }
 
 

@@ -6,12 +6,15 @@ import com.example.tv2app.models.TextTask
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import org.w3c.dom.Text
 
 open class TaskRepository {
 
 
     private lateinit var ref : DatabaseReference
     private lateinit var db : FirebaseDatabase
+
+    var textTaskObject : TextTask? = TextTask(null, null, null, null, null, null,null)
 
     fun dummyData(){
 
@@ -26,33 +29,42 @@ open class TaskRepository {
 
         ref = FirebaseDatabase.getInstance().getReference("Tasks").child("QuizTask")
         ref.child(quizTask1.taskId).setValue(quizTask1)
-
-
     }
 
-
-    fun getTypeTask(id : String) : String {
-
-        //TODO FIX THIS SHIT
-        var type = ""
-
+    fun getCurrentTask(id: String) {
         db = FirebaseDatabase.getInstance()
-        ref = FirebaseDatabase.getInstance().getReference("Tasks").child("TextTask")
+        ref = db.reference.child("Tasks").child("TextTask")
+        ref.child(id).addListenerForSingleValueEvent(object : ValueEventListener {
 
-        val query = ref.child(id).limitToFirst(1).get()
+            override fun onDataChange(snapshot: DataSnapshot) {
 
+                //Fetch TextTask Object via snapshot
+                val task = snapshot
+                val currentTaskObject = task.getValue(TextTask::class.java)
 
-        if (query.javaClass.simpleName == "TextTask"){
-            type = "TextTask"
-        }
+                //Populate variable to fetched TextTask Object
+                textTaskObject = currentTaskObject
+                //Send object to ViewModel
+                fetchTaskToView(textTaskObject)
 
-        else if (query.javaClass.simpleName == "QuizTask"){
-            type = "QuizTask"
-        }
+                //Logging fetched data
+                val points = "${currentTaskObject?.point} points på højkant!" ?: ""
+                val question = currentTaskObject?.description ?: ""
 
-        return type
+                Log.i("DB READ", "point: $points, question: $question")
+            }
 
+            override fun onCancelled(error: DatabaseError) {
+                //Handle the error
+                Log.i("DB READ", error.message)
+            }
+        })
     }
+
+    fun fetchTaskToView(textTask : TextTask?) : TextTask? {
+        return textTask
+    }
+
 
 
 }

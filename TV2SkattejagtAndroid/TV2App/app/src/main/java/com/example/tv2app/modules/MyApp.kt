@@ -13,7 +13,7 @@ class MyApp : Application() {
             // declare used Android context
             androidContext(this@MyApp)
             // declare modules
-            modules(userModule, taskModule)
+            modules(userModule, taskModule, qrModule)
         }
     }
 }

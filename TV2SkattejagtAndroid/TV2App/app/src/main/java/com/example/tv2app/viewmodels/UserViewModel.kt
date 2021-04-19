@@ -9,6 +9,8 @@ import com.example.tv2app.repos.UserRepository
 
 class UserViewModel(private val userRepository : UserRepository) : ViewModel() {
 
+    private var userObject : User? = User(null, null, null, null, null, null)
+
 
     fun createUser(email: String, password: String, department: String, id: String, fullName : String, job : String) {
         userRepository.createUser(email, password, department, id, fullName, job)
@@ -23,4 +25,13 @@ class UserViewModel(private val userRepository : UserRepository) : ViewModel() {
         userRepository.signOutUser()
     }
 
+    fun getCurrentUser(id : String) {
+        userRepository.getCurrentUser(id)
+    }
+
+    fun fetchUserToView() : User? {
+        userObject = userRepository.userObject
+
+        return userObject
+    }
 }
