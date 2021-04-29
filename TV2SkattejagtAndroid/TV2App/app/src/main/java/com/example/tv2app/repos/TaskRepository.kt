@@ -44,13 +44,16 @@ open class TaskRepository {
 
                 //Populate variable to fetched TextTask Object
                 textTaskObject = currentTaskObject
+                if (textTaskObject == null){
+                    Log.i("DB READ", "TextTask Object is currently null, async call.")
+                }
+
                 //Send object to ViewModel
                 fetchTaskToView(textTaskObject)
 
                 //Logging fetched data
                 val points = "${currentTaskObject?.point} points på højkant!" ?: ""
                 val question = currentTaskObject?.description ?: ""
-
                 Log.i("DB READ", "point: $points, question: $question")
             }
 

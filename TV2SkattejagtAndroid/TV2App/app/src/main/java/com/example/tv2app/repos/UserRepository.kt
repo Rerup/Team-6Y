@@ -38,8 +38,11 @@ open class UserRepository {
             //Create the User object with these Params, standard is 0 point when account is created.
             val user = User(totalPoints = 0, departmentId = department, uniqueId = id, email = email, fullName = fullName, job = job)
 
+
+
             //Save object to this location and set the values of the object given by the user.
             ref.child(idDb).setValue(user)
+
 
         }
             //Throw exception
@@ -105,8 +108,6 @@ open class UserRepository {
                 val job = currentUserObject?.job ?:""
 
 
-
-
                 Log.i("DB READ", "email: $email, tv2id: $uniqueId  department: $department  totalPoints: $points, Name: $fullName, Job: $job")
             }
 
@@ -122,6 +123,22 @@ open class UserRepository {
         return user
     }
 
+    fun rewardUserPoints(points : Int, id : String) {
+        db = FirebaseDatabase.getInstance()
+        ref = db.reference.child("Users")
+            ref.child(id).addListenerForSingleValueEvent(object : ValueEventListener{
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val currentUserObject = snapshot.getValue(User::class.java)
+                    currentUserObject?.totalPoints?.plus(points)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.i("DB READ", error.message)
+                }
+            })
+
+    }
 
 }
 

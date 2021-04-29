@@ -7,33 +7,34 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.LiveData
+import androidx.navigation.fragment.findNavController
 import com.example.tv2app.R
-import com.example.tv2app.databinding.FragmentProfileBinding
 import com.example.tv2app.databinding.FragmentTextTaskBinding
-import com.example.tv2app.models.TextTask
-import com.example.tv2app.models.User
-import com.example.tv2app.services.QRService
+import com.example.tv2app.services.QRServiceRepository
+import com.example.tv2app.viewmodels.QRServiceViewModel
 import com.example.tv2app.viewmodels.TaskViewModel
 import com.example.tv2app.viewmodels.UserViewModel
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class TextTaskFragment : Fragment() {
 
-    lateinit var auth: FirebaseAuth
+
 
     private val taskViewModel: TaskViewModel by sharedViewModel()
-    private lateinit var _qrService : QRService
+    private val userViewModel: UserViewModel by sharedViewModel()
+    private val qrViewModel: QRServiceViewModel by sharedViewModel()
+
+
 
     private lateinit var binding: FragmentTextTaskBinding
-    private lateinit var db: FirebaseDatabase
-    private lateinit var ref: DatabaseReference
+
+    //Database Refs
+    lateinit var auth: FirebaseAuth
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,19 +54,25 @@ class TextTaskFragment : Fragment() {
 
         showTaskData()
 
+        //Buttons
+        //Checking if user answered correctly
+        binding.answerButton.setOnClickListener{validateAnswer()}
+
         //Track current User
         //val currentUser = auth.currentUser?.uid ?:""
 
+        //Populates view with the scanned task values
 
 
         return binding.root
     }
 
+
+
     private fun showTaskData(){
-        //Reference to QR Service
-        val qrService = _qrService
+
         //Get Current TextTask from the scanned QR Contents via Id.
-        taskViewModel.getCurrentTask(qrService._scannedTaskId)
+        taskViewModel.getCurrentTask(qrViewModel.scannedTaskId)
         //Fetching the object
         val taskObject = taskViewModel.fetchTaskToView()
 
@@ -74,6 +81,23 @@ class TextTaskFragment : Fragment() {
 
     }
 
-    //TODO Fun Tjek om input er rigtig fra brugeren og giv point, hvis rigtig
+    private fun validateAnswer(){
+        val taskObject = taskViewModel.fetchTaskToView()
+
+        if (binding.answerInput.text.toString() == taskObject?.solution ?:""){
+            userViewModel.rewardUserPoints(taskObject?.point ?:0, auth.currentUser?.uid ?:"")
+            Log.i("Validater", "Correct answer")
+        }
+        else {
+            Log.i("Validater", "Wrong answer")
+        }
+        goToMainMenu()
+    }
+
+    private fun goToMainMenu(){
+        //Måske et fragment der fortæller om man har svaret rigtigt eller forkert?
+        findNavController().navigate(R.id.action_textTaskFragment_to_startFragment)
+
+    }
 
 }

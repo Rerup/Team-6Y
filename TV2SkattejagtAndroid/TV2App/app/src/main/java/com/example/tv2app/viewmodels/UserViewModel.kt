@@ -34,4 +34,9 @@ class UserViewModel(private val userRepository : UserRepository) : ViewModel() {
 
         return userObject
     }
+
+    fun rewardUserPoints(points : Int, id : String){
+        userRepository.rewardUserPoints(points, id)
+    }
+
 }

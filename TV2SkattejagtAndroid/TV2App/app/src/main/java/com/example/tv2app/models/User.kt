@@ -16,6 +16,4 @@ class User() {
     var email: String = ""
     var fullName : String = ""
     var job : String = ""
-
-
 }

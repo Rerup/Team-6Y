@@ -11,13 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.tv2app.R
 import com.example.tv2app.databinding.FragmentStartBinding
-import com.example.tv2app.services.QRService
+import com.example.tv2app.services.QRServiceRepository
+import com.example.tv2app.viewmodels.QRServiceViewModel
 import com.example.tv2app.viewmodels.TaskViewModel
 import com.example.tv2app.viewmodels.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.zxing.integration.android.IntentIntegrator
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 /**
@@ -28,9 +28,15 @@ class StartFragment : Fragment() {
     private lateinit var binding: FragmentStartBinding
 
     lateinit var auth : FirebaseAuth
-    private val userViewModel: UserViewModel by viewModel()
+    //ViewModels
+    private val userViewModel: UserViewModel by sharedViewModel()
     private val taskViewModel : TaskViewModel by sharedViewModel()
-    private lateinit var _qrService : QRService
+    private val qrViewModel: QRServiceViewModel by sharedViewModel()
+    //Services
+    private var qrService = QRServiceRepository()
+
+
+
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -72,7 +78,7 @@ class StartFragment : Fragment() {
     }
 
 
-
+    //Pops up QR Scanner
     private fun qrScanner(){
         val integrator = IntentIntegrator.forSupportFragment(this@StartFragment)
 
@@ -80,10 +86,10 @@ class StartFragment : Fragment() {
         integrator.setPrompt("Scan QR code")
         integrator.setBeepEnabled(false)
         //integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
-
         integrator.initiateScan()
     }
 
+    //
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
         if (result != null) {
@@ -92,14 +98,13 @@ class StartFragment : Fragment() {
                 Toast.makeText(context, "Try again", Toast.LENGTH_LONG).show()
             }
             else {
-                //Services
-                val qrService = _qrService
-                qrService.saveQRContent(result.contents.toString())
+                //Init Service
+                //val qrService = _qrService
 
-                //taskViewModel.saveQRContent(result.contents.toString())
-                //val type = taskViewModel.splitQRCode(taskViewModel._scannedQRContents)
+                qrViewModel.saveQRContent(result.contents.toString())
 
-                when (qrService.splitQRCode(qrService._scannedQRContents)){
+                //Checking type of task and opens corresponding fragment
+                when (qrViewModel.splitQRCode(qrViewModel.scannedQRContents)){
                     "Text" -> {
                         findNavController().navigate(R.id.action_startFragment_to_textTaskFragment)
                     }

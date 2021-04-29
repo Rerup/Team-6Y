@@ -27,7 +27,6 @@ class TaskViewModel(private val taskRepository : TaskRepository) : ViewModel() {
     fun getCurrentTask(scannedTaskId : String){
         taskRepository.getCurrentTask(scannedTaskId)
 
-
     }
 
 

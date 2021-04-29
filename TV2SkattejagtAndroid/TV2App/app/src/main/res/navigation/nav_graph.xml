@@ -50,7 +50,11 @@
         android:id="@+id/textTaskFragment"
         android:name="com.example.tv2app.activities.TextTaskFragment"
         android:label="Spørgsmål Opgave"
-        tools:layout="@layout/fragment_text_task" />
+        tools:layout="@layout/fragment_text_task" >
+        <action
+            android:id="@+id/action_textTaskFragment_to_startFragment"
+            app:destination="@id/startFragment" />
+    </fragment>
     <fragment
         android:id="@+id/quizTaskFragment"
         android:name="com.example.tv2app.activities.QuizTaskFragment"
