@@ -32,6 +32,7 @@ class StartFragment : Fragment() {
     private val userViewModel: UserViewModel by sharedViewModel()
     private val taskViewModel : TaskViewModel by sharedViewModel()
     private val qrViewModel: QRServiceViewModel by sharedViewModel()
+
     //Services
     private var qrService = QRServiceRepository()
 
@@ -45,7 +46,6 @@ class StartFragment : Fragment() {
 
         // Inflate the layout XML file and return a binding object instance
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_start, container, false)
-
         auth = FirebaseAuth.getInstance()
 
         return binding.root
@@ -70,7 +70,9 @@ class StartFragment : Fragment() {
 
 
     private fun goToLeaderboard(){
-        findNavController().navigate(R.id.action_startFragment_to_leaderboardFragment)
+        //findNavController().navigate(R.id.action_startFragment_to_leaderboardFragment)
+        findNavController().navigate(R.id.action_startFragment_to_leaderboardActivity)
+
     }
 
     private fun goToHintScreen(){

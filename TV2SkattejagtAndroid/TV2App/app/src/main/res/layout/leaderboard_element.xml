@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="368dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:elevation="8dp"
+    app:cardCornerRadius="8dp"
+    android:layout_marginStart="14dp"
+    android:layout_marginTop="16dp">
+
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="6dp"
+        android:orientation="vertical">
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/ph_fullName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Jens" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="210dp"
+                android:text="#"
+                android:textSize="28sp"/>
+            <TextView
+                android:id="@+id/ph_rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="1"
+                android:textSize="28sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/scoreTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Score:"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/ph_pointAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="200"
+                android:layout_marginStart="8dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/departmentTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Department:"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/ph_department"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Digital"
+                android:layout_marginStart="8dp"/>
+
+        </LinearLayout>
+    </LinearLayout>-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:context=".activities.ProfileFragment">
+
+
+        <TextView
+            android:id="@+id/ph_fullName2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Jens" />
+
+        <TextView
+            android:id="@+id/scoreTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ph_fullName2"
+            android:text="Score:" />
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/scoreTitle"
+            app:layout_constraintTop_toBottomOf="@+id/ph_fullName2"
+            tools:text="200" />
+
+        <TextView
+            android:id="@+id/departmentTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scoreTitle"
+            android:text="Department:" />
+        <TextView
+            android:id="@+id/department"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/departmentTitle"
+            app:layout_constraintTop_toBottomOf="@+id/scoreTitle"
+            tools:text="Digital" />
+
+        <TextView
+            android:id="@+id/rankingHashtag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:layout_marginStart="280dp"
+            app:layout_constraintStart_toStartOf="@+id/ph_fullName2"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="#"/>
+
+
+        <TextView
+            android:id="@+id/rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="@id/rankingHashtag"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.cardview.widget.CardView>
+
+
+

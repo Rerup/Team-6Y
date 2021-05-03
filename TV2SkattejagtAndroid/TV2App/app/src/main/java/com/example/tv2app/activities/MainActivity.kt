@@ -10,6 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.example.tv2app.R
 import com.example.tv2app.viewmodels.TaskViewModel
 import com.example.tv2app.viewmodels.UserViewModel
@@ -21,11 +22,13 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     private lateinit var navController: NavController
 
+
     private val userViewModel: UserViewModel by viewModel()
     private val taskViewModel : TaskViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         //Set up navigation controller
         val navHostFragment = supportFragmentManager

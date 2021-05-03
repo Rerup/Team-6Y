@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_startFragment_to_quizTaskFragment"
             app:destination="@id/quizTaskFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_leaderboardActivity"
+            app:destination="@id/leaderboardActivity" />
     </fragment>
 
     <!-- LEADERBOARD FRAGMENT -->
@@ -39,17 +42,17 @@
     <fragment
         android:id="@+id/hintFragment"
         android:name="com.example.tv2app.activities.HintFragment"
-        android:label="@string/Hint_fragment_title"
+        android:label="Hints"
         tools:layout="@layout/fragment_hint" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.tv2app.activities.ProfileFragment"
-        android:label="Profil"
+        android:label="Profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/textTaskFragment"
         android:name="com.example.tv2app.activities.TextTaskFragment"
-        android:label="Spørgsmål Opgave"
+        android:label="Text Task"
         tools:layout="@layout/fragment_text_task" >
         <action
             android:id="@+id/action_textTaskFragment_to_startFragment"
@@ -58,6 +61,11 @@
     <fragment
         android:id="@+id/quizTaskFragment"
         android:name="com.example.tv2app.activities.QuizTaskFragment"
-        android:label="Quiz Opgave"
+        android:label="Quiz"
         tools:layout="@layout/fragment_quiz_task" />
+    <activity
+        android:id="@+id/leaderboardActivity"
+        android:name="com.example.tv2app.activities.LeaderboardActivity"
+        android:label="Leaderboard"
+        tools:layout="@layout/activity_leaderboard" />
 </navigation>

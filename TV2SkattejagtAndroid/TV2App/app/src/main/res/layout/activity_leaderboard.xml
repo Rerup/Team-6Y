@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.LeaderboardFragment">
+    tools:context=".activities.LeaderboardActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerLeaderboard2"
+        android:id="@+id/recyclerLeaderboard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"

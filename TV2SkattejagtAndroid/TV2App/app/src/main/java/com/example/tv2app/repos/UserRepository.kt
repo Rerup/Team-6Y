@@ -7,6 +7,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.sync.Mutex
+import kotlin.concurrent.thread
 
 open class UserRepository {
 
@@ -15,6 +16,7 @@ open class UserRepository {
     private lateinit var db : FirebaseDatabase
 
     var userObject : User? = User(null, null,null,null,null,null)
+    var userList : ArrayList<User?> = ArrayList()
 
     //Companion Object
 
@@ -139,6 +141,40 @@ open class UserRepository {
             })
 
     }
+
+    fun inflateLeaderboard() {
+
+        db = FirebaseDatabase.getInstance()
+        ref = db.reference.child("Users")
+        ref.addListenerForSingleValueEvent(object : ValueEventListener{
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                for (users in snapshot.children){
+
+                    val currentUserObject = users.getValue(User::class.java)
+                    userList.add(currentUserObject)
+
+                    Log.i("DB READ", currentUserObject?.fullName ?:"" + currentUserObject?.totalPoints ?:"")
+                }
+
+                retrieveUserList(userList)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                //Handle the error
+                Log.i("DB READ", error.message)
+            }
+        })
+
+    }
+
+    fun retrieveUserList(userList : ArrayList<User?>) : ArrayList<User?> {
+        return userList
+    }
+
+
+
 
 }
 

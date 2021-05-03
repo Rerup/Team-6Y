@@ -45,6 +45,7 @@ open class TaskRepository {
                 //Populate variable to fetched TextTask Object
                 textTaskObject = currentTaskObject
                 if (textTaskObject == null){
+
                     Log.i("DB READ", "TextTask Object is currently null, async call.")
                 }
 
@@ -55,18 +56,22 @@ open class TaskRepository {
                 val points = "${currentTaskObject?.point} points på højkant!" ?: ""
                 val question = currentTaskObject?.description ?: ""
                 Log.i("DB READ", "point: $points, question: $question")
+
             }
 
             override fun onCancelled(error: DatabaseError) {
                 //Handle the error
                 Log.i("DB READ", error.message)
             }
+
         })
+
     }
 
     fun fetchTaskToView(textTask : TextTask?) : TextTask? {
         return textTask
     }
+
 
 
 

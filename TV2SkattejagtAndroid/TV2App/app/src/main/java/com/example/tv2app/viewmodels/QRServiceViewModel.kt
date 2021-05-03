@@ -5,8 +5,8 @@ import com.example.tv2app.services.QRServiceRepository
 
 class QRServiceViewModel(private val qrServiceRepository : QRServiceRepository) : ViewModel() {
 
-    private var scannedTaskId : String = ""
-    private var scannedQRContents : String = ""
+    var scannedTaskId : String = ""
+    var scannedQRContents : String = ""
 
     fun saveQRContent(qr : String){
         scannedQRContents = qrServiceRepository.saveQRContent(qr)
