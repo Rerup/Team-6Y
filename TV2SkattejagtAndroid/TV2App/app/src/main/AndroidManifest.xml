@@ -30,7 +30,8 @@
 
         <activity
             android:name=".activities.LeaderboardActivity"
-            android:label="Leaderboard"></activity>
+            android:label="Leaderboard"
+            android:parentActivityName=".activities.MainActivity"/>
         <activity android:name=".activities.MainActivity" />
         <activity
             android:name=".activities.RegisterActivity"
