@@ -66,6 +66,15 @@
             app:layout_constraintTop_toBottomOf="@+id/scoreTitle"
             tools:text="Digital" />
 
+        <ImageView
+            android:id="@+id/trophy_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            app:layout_constraintStart_toStartOf="@id/rankingHashtag"
+            app:layout_constraintTop_toBottomOf="@id/scoreTitle"
+            tools:src="@drawable/ic_baseline_star_24_gold"/>
+
         <TextView
             android:id="@+id/rankingHashtag"
             android:layout_width="wrap_content"
