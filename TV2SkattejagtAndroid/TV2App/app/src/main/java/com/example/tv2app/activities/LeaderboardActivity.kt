@@ -3,6 +3,7 @@ package com.example.tv2app.activities
 import android.content.Context
 import android.os.Bundle
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -14,6 +15,8 @@ import com.example.tv2app.adapter.LeaderboardAdapter
 import com.example.tv2app.models.User
 import com.example.tv2app.viewmodels.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LeaderboardActivity : AppCompatActivity() {
@@ -30,24 +33,39 @@ class LeaderboardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_leaderboard)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         auth = FirebaseAuth.getInstance()
 
+        //Retrieve List of Users
+        userList = getUserList()
+
+        //Shows the current rank of the logged in User.
+        showCurrentPlayerData(userList)
+
+        //Initialize RecyclerView
+        initRecyclerView()
+
+        //Notify RecyclerView that data has changed since being initialized.
+        leaderboardRecyclerView.adapter!!.notifyDataSetChanged()
+
+    }
+
+    override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
+
+
+
+        return super.onCreateView(name, context, attrs)
+
+
+
+    }
+
+    private fun initRecyclerView(){
         leaderboardRecyclerView = findViewById(R.id.recyclerLeaderboard)
         leaderboardRecyclerView.layoutManager = LinearLayoutManager(this)
         leaderboardRecyclerView.setHasFixedSize(false)
 
-
-        userList = getUserList()
+        //Set adapter
         leaderboardRecyclerView.adapter = LeaderboardAdapter(userList)
-
-        showCurrentPlayerData(userList)
-    }
-
-    override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
-        return super.onCreateView(name, context, attrs)
-
-
 
     }
 
@@ -59,7 +77,7 @@ class LeaderboardActivity : AppCompatActivity() {
 
 
 
-    fun getUserList() : ArrayList<User?> {
+    private fun getUserList() : ArrayList<User?> {
         //TODO Spørg Steffen om dette, hvorfor er der duplicates her
         val list = userViewModel.inflateLeaderboard()
         //list.sortByDescending { it?.totalPoints ?:0 }
@@ -68,7 +86,7 @@ class LeaderboardActivity : AppCompatActivity() {
 
     }
 
-    fun showCurrentPlayerData(userList : ArrayList<User?>){
+    private fun showCurrentPlayerData(userList : ArrayList<User?>){
         //Track current User
         val currentUser = auth.currentUser?.uid ?:""
 
@@ -93,9 +111,11 @@ class LeaderboardActivity : AppCompatActivity() {
 
     }
 
-    //TODO Eventuelt flytte til UserViewModel, da metode defineres to steder (LeaderBoardAdapter)
+
     private fun findIndex(array : ArrayList<User?>, item : User?) : Int {
-        return array.indexOf(item) + 1
+        val index = array.indexOfFirst { it?.fullName == item?.fullName }
+        Log.i("Index", "Index : $index " + "Size: ${array.size} " + "User Object: ${item?.fullName}")
+        return index + 1
     }
 
 

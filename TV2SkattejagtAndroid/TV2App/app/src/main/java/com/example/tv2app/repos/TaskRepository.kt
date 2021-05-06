@@ -6,6 +6,9 @@ import com.example.tv2app.models.TextTask
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.w3c.dom.Text
 
 open class TaskRepository {
@@ -31,40 +34,38 @@ open class TaskRepository {
         ref.child(quizTask1.taskId).setValue(quizTask1)
     }
 
-    fun getCurrentTask(id: String) {
-        db = FirebaseDatabase.getInstance()
-        ref = db.reference.child("Tasks").child("TextTask")
-        ref.child(id).addListenerForSingleValueEvent(object : ValueEventListener {
+     fun getCurrentTask(id: String) {
 
-            override fun onDataChange(snapshot: DataSnapshot) {
+            db = FirebaseDatabase.getInstance()
+            ref = db.reference.child("Tasks").child("TextTask")
+            ref.child(id).addListenerForSingleValueEvent(object : ValueEventListener {
 
-                //Fetch TextTask Object via snapshot
-                val task = snapshot
-                val currentTaskObject = task.getValue(TextTask::class.java)
+                override fun onDataChange(snapshot: DataSnapshot) {
 
-                //Populate variable to fetched TextTask Object
-                textTaskObject = currentTaskObject
-                if (textTaskObject == null){
+                    //Fetch TextTask Object via snapshot
+                    val task = snapshot
+                    val currentTaskObject = task.getValue(TextTask::class.java)
 
-                    Log.i("DB READ", "TextTask Object is currently null, async call.")
+                    //Populate variable to fetched TextTask Object
+                    textTaskObject = currentTaskObject
+
+                    //Send object to ViewModel
+                    fetchTaskToView(textTaskObject)
+
+                    //Logging fetched data
+                    val points = currentTaskObject?.point ?: ""
+                    val question = currentTaskObject?.description ?: ""
+                    Log.i("DB READ", "points: $points, question: $question")
+
                 }
 
-                //Send object to ViewModel
-                fetchTaskToView(textTaskObject)
+                override fun onCancelled(error: DatabaseError) {
+                    //Handle the error
+                    Log.i("DB READ", error.message)
+                }
 
-                //Logging fetched data
-                val points = "${currentTaskObject?.point} points på højkant!" ?: ""
-                val question = currentTaskObject?.description ?: ""
-                Log.i("DB READ", "point: $points, question: $question")
+            })
 
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                //Handle the error
-                Log.i("DB READ", error.message)
-            }
-
-        })
 
     }
 

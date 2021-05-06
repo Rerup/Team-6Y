@@ -33,8 +33,7 @@ class StartFragment : Fragment() {
     private val taskViewModel : TaskViewModel by sharedViewModel()
     private val qrViewModel: QRServiceViewModel by sharedViewModel()
 
-    //Services
-    private var qrService = QRServiceRepository()
+
 
 
 
@@ -100,8 +99,6 @@ class StartFragment : Fragment() {
                 Toast.makeText(context, "Try again", Toast.LENGTH_LONG).show()
             }
             else {
-                //Init Service
-                //val qrService = _qrService
 
                 qrViewModel.saveQRContent(result.contents.toString())
 

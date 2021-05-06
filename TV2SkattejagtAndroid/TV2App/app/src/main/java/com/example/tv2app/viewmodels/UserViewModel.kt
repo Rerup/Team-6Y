@@ -40,6 +40,7 @@ class UserViewModel(private val userRepository : UserRepository) : ViewModel() {
 
     fun inflateLeaderboard() : ArrayList<User?> {
         userRepository.inflateLeaderboard()
+
         if (userRepository.userList.size == 0){
             Log.i("DB READ", "List Empty")
 
@@ -48,13 +49,13 @@ class UserViewModel(private val userRepository : UserRepository) : ViewModel() {
             userList = userRepository.userList
             return userList
         }
-       return userList
-    }
-
-    fun retrieveUserList() : ArrayList<User?> {
-        userList = userRepository.userList
         return userList
     }
+
+    /*fun retrieveUserList() : ArrayList<User?> {
+        userList = userRepository.userList
+        return userList
+    }*/
 
 
 

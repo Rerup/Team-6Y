@@ -6,6 +6,7 @@ import com.example.tv2app.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.sync.Mutex
 import kotlin.concurrent.thread
 
@@ -18,7 +19,7 @@ open class UserRepository {
     var userObject : User? = User(null, null,null,null,null,null)
     var userList : ArrayList<User?> = ArrayList()
 
-    //Companion Object
+
 
 
     //Create an account with the params the user gave. Firebase saves Auth User to DB and User Object.
@@ -93,24 +94,8 @@ open class UserRepository {
                 //Variable used in ViewModel so that it can be used in view.
                 userObject = currentUserObject
 
-                if (userObject == null){
+                fetchUserToView(userObject)
 
-                    Log.i("DB READ", "User Object Variable is currently null, async call.")
-                }
-                else {
-                    fetchUserToView(userObject)
-                }
-
-                //Check to see if we are getting values.
-                val email = currentUserObject?.email ?:""
-                val uniqueId = currentUserObject?.uniqueId ?:""
-                val department = currentUserObject?.departmentId ?:""
-                val points = currentUserObject?.totalPoints ?:0
-                val fullName = currentUserObject?.fullName ?:""
-                val job = currentUserObject?.job ?:""
-
-
-                Log.i("DB READ", "email: $email, tv2id: $uniqueId  department: $department  totalPoints: $points, Name: $fullName, Job: $job")
             }
 
             override fun onCancelled(error: DatabaseError) {

@@ -52,22 +52,27 @@ class TextTaskFragment : Fragment() {
         // Inflate the layout XML file and return a binding object instance
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_text_task, container, false)
 
-        showTaskData()
+
 
         //Buttons
         //Checking if user answered correctly
         binding.answerButton.setOnClickListener{validateAnswer()}
 
         //Track current User
-        //val currentUser = auth.currentUser?.uid ?:""
+
 
         //Populates view with the scanned task values
-
+        showTaskData()
 
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+
+
+    }
 
     private fun showTaskData(){
 
@@ -78,8 +83,8 @@ class TextTaskFragment : Fragment() {
 
         binding.points = "${taskObject?.point} points på højkant!" ?: ""
         binding.question = taskObject?.description ?: ""
-
     }
+
 
     private fun validateAnswer(){
         val taskObject = taskViewModel.fetchTaskToView()

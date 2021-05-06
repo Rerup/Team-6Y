@@ -11,6 +11,8 @@ import com.example.tv2app.models.User
 
 class LeaderboardAdapter(private val userList : ArrayList<User?>) : RecyclerView.Adapter<LeaderboardAdapter.LeaderboardViewHolder>() {
 
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LeaderboardViewHolder {
 
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.leaderboard_element, parent, false)
@@ -51,6 +53,10 @@ class LeaderboardAdapter(private val userList : ArrayList<User?>) : RecyclerView
 
     private fun findIndex(array : ArrayList<User?>, item : User?) : Int {
         return array.indexOf(item) + 1
+
+    }
+
+    private fun updateUI(){
 
     }
 
