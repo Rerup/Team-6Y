@@ -24,7 +24,7 @@ class UserViewModel(private val userRepository : UserRepository) : ViewModel() {
         userRepository.signOutUser()
     }
 
-    fun getCurrentUser(id : String) {
+     fun getCurrentUser(id : String) {
         userRepository.getCurrentUser(id)
     }
 
@@ -52,10 +52,9 @@ class UserViewModel(private val userRepository : UserRepository) : ViewModel() {
         return userList
     }
 
-    /*fun retrieveUserList() : ArrayList<User?> {
-        userList = userRepository.userList
-        return userList
-    }*/
+    fun findUserIndexInLeaderboard(array : ArrayList<User?>, item : User?) : Int {
+        return userRepository.findUserIndexInLeaderboard(array, item)
+    }
 
 
 

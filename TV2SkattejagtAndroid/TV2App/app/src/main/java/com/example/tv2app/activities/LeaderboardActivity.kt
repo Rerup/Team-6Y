@@ -15,8 +15,7 @@ import com.example.tv2app.adapter.LeaderboardAdapter
 import com.example.tv2app.models.User
 import com.example.tv2app.viewmodels.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LeaderboardActivity : AppCompatActivity() {
@@ -45,18 +44,14 @@ class LeaderboardActivity : AppCompatActivity() {
         initRecyclerView()
 
         //Notify RecyclerView that data has changed since being initialized.
-        leaderboardRecyclerView.adapter!!.notifyDataSetChanged()
+        leaderboardRecyclerView.adapter?.notifyDataSetChanged()
+
 
     }
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
 
-
-
         return super.onCreateView(name, context, attrs)
-
-
-
     }
 
     private fun initRecyclerView(){
@@ -67,6 +62,7 @@ class LeaderboardActivity : AppCompatActivity() {
         //Set adapter
         leaderboardRecyclerView.adapter = LeaderboardAdapter(userList)
 
+
     }
 
     override fun onPause() {
@@ -74,14 +70,9 @@ class LeaderboardActivity : AppCompatActivity() {
         userViewModel.userList.clear()
     }
 
-
-
-
     private fun getUserList() : ArrayList<User?> {
-        //TODO Spørg Steffen om dette, hvorfor er der duplicates her
         val list = userViewModel.inflateLeaderboard()
-        //list.sortByDescending { it?.totalPoints ?:0 }
-        list.sortBy { it?.totalPoints ?:0 }
+        list.sortByDescending { it?.totalPoints ?:0 }
         return list
 
     }
@@ -107,16 +98,10 @@ class LeaderboardActivity : AppCompatActivity() {
         department.text = userObject?.departmentId?:""
 
         val ranking : TextView = findViewById(R.id.cp_rank)
-        ranking.text = findIndex(userList,userObject).toString()
+        ranking.text = userViewModel.findUserIndexInLeaderboard(userList,userObject).toString()
 
     }
 
-
-    private fun findIndex(array : ArrayList<User?>, item : User?) : Int {
-        val index = array.indexOfFirst { it?.fullName == item?.fullName }
-        Log.i("Index", "Index : $index " + "Size: ${array.size} " + "User Object: ${item?.fullName}")
-        return index + 1
-    }
 
 
 }

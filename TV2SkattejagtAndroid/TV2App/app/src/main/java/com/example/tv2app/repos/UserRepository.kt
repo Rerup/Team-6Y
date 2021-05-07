@@ -158,6 +158,12 @@ open class UserRepository {
         return userList
     }
 
+    fun findUserIndexInLeaderboard(array : ArrayList<User?>, item : User?) : Int {
+        val index = array.indexOfFirst { it?.fullName == item?.fullName }
+        Log.i("Index", "Index : $index " + "Size: ${array.size} " + "User Object: ${item?.fullName}")
+        return index + 1
+    }
+
 
 
 

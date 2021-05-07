@@ -24,9 +24,9 @@ class LeaderboardAdapter(private val userList : ArrayList<User?>) : RecyclerView
 
         // Top 3 players get a trophy badge
         when(position){
-            0 ->holder.trophy.setImageResource(R.drawable.ic_baseline_star_24_gold)
-            1 ->holder.trophy.setImageResource(R.drawable.ic_baseline_star_24_silver)
-            2 ->holder.trophy.setImageResource(R.drawable.ic_baseline_star_24_bronze)
+            0 ->holder.trophy.setImageResource(R.drawable.ic_baseline_emoji_events_24_gold)
+            1 ->holder.trophy.setImageResource(R.drawable.ic_baseline_emoji_events_24_silver)
+            2 ->holder.trophy.setImageResource(R.drawable.ic_baseline_emoji_events_24_bronze)
         }
 
         val currentItem = userList[position]
@@ -57,7 +57,10 @@ class LeaderboardAdapter(private val userList : ArrayList<User?>) : RecyclerView
     }
 
     private fun updateUI(){
-
+        notifyDataSetChanged()
     }
+
+
+
 
 }
