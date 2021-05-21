@@ -5,11 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tv2app.R
 import com.example.tv2app.models.User
 
-class LeaderboardAdapter(private val userList : ArrayList<User?>) : RecyclerView.Adapter<LeaderboardAdapter.LeaderboardViewHolder>() {
+class LeaderboardAdapter(private val userList : MutableList<User?> = mutableListOf()) : RecyclerView.Adapter<LeaderboardAdapter.LeaderboardViewHolder>() {
 
 
 
@@ -51,13 +52,16 @@ class LeaderboardAdapter(private val userList : ArrayList<User?>) : RecyclerView
         val trophy : ImageView = itemView.findViewById(R.id.trophy_icon)
     }
 
-    private fun findIndex(array : ArrayList<User?>, item : User?) : Int {
+    private fun findIndex(array : List<User?>, item : User?) : Int {
         return array.indexOf(item) + 1
 
     }
 
-    private fun updateUI(){
+    fun updateUI(userList : List<User?>) {
+        this.userList.clear()
+        this.userList.addAll(userList)
         notifyDataSetChanged()
+
     }
 
 

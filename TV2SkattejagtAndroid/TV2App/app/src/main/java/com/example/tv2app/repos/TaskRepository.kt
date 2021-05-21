@@ -17,6 +17,14 @@ open class TaskRepository {
     private lateinit var ref : DatabaseReference
     private lateinit var db : FirebaseDatabase
 
+    companion object TagHelper {
+        private const val READ = "DB READ"
+        private const val FETCH = "DB FETCH"
+        private const val AUTH = "FirebaseAuthentication"
+        private const val INDEX = "Index"
+
+    }
+
     var textTaskObject : TextTask? = TextTask(null, null, null, null, null, null,null)
 
     fun dummyData(){
@@ -55,13 +63,13 @@ open class TaskRepository {
                     //Logging fetched data
                     val points = currentTaskObject?.point ?: ""
                     val question = currentTaskObject?.description ?: ""
-                    Log.i("DB READ", "points: $points, question: $question")
+                    Log.i(READ, "points: $points, question: $question")
 
                 }
 
                 override fun onCancelled(error: DatabaseError) {
                     //Handle the error
-                    Log.i("DB READ", error.message)
+                    Log.i(READ, error.message)
                 }
 
             })
