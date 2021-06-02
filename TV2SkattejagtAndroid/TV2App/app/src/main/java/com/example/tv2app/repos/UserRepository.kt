@@ -1,7 +1,6 @@
 package com.example.tv2app.repos
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.tv2app.models.User
 import com.google.firebase.auth.FirebaseAuth
@@ -17,21 +16,8 @@ open class UserRepository {
     private lateinit var ref : DatabaseReference
     private lateinit var db : FirebaseDatabase
 
-    companion object TagHelper {
-        private const val READ = "DB READ"
-        private const val FETCH = "DB FETCH"
-        private const val AUTH = "FirebaseAuthentication"
-        private const val INDEX = "Index"
-
-    }
-
     var userObject : User? = User(null, null,null,null,null,null)
-
-    private val _userList : MutableLiveData<List<User?>> = MutableLiveData()
-    val userList : LiveData<List<User?>> = _userList
-
-    private val _userLiveData  : MutableLiveData<User?> = MutableLiveData()
-    val  userLiveData  : LiveData<User?> = _userLiveData
+    var userList : ArrayList<User?> = ArrayList()
 
 
 
@@ -55,6 +41,8 @@ open class UserRepository {
             //Create the User object with these Params, standard is 0 point when account is created.
             val user = User(totalPoints = 0, departmentId = department, uniqueId = id, email = email, fullName = fullName, job = job)
 
+
+
             //Save object to this location and set the values of the object given by the user.
             ref.child(idDb).setValue(user)
 
@@ -62,7 +50,8 @@ open class UserRepository {
         }
             //Throw exception
             else{
-                Log.i(AUTH, "Failed to create account " + task.exception)
+                Log.i("AUTH", "Failed to create account " + task.exception)
+
             }
 
         }
@@ -82,11 +71,11 @@ open class UserRepository {
 
             task -> if (task.isSuccessful){
 
-            Log.i(AUTH, "Logged In Correctly")
+            Log.i("AUTH", "Logged In Correctly")
 
         }
             else{
-                Log.i(AUTH, "Failed to Sign in" + task.exception)
+                Log.i("AUTH", "Failed to Sign in" + task.exception)
             }
         }
 
@@ -106,12 +95,12 @@ open class UserRepository {
                 userObject = currentUserObject
 
                 fetchUserToView(userObject)
-                _userLiveData.postValue(userObject)
+
             }
 
             override fun onCancelled(error: DatabaseError) {
                 //Handle the error
-                Log.i(READ, error.message)
+                Log.i("DB READ", error.message)
             }
         })
 
@@ -132,7 +121,7 @@ open class UserRepository {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Log.i(READ, error.message)
+                    Log.i("DB READ", error.message)
                 }
             })
 
@@ -146,14 +135,20 @@ open class UserRepository {
 
             override fun onDataChange(snapshot: DataSnapshot) {
 
-                val users = snapshot.children.map { it.getValue(User::class.java) }
-                _userList.postValue(users)
+                for (users in snapshot.children){
 
+                    val currentUserObject = users.getValue(User::class.java)
+                    userList.add(currentUserObject)
+
+                    Log.i("DB READ", currentUserObject?.fullName ?:"" + currentUserObject?.totalPoints ?:"")
+                }
+
+                retrieveUserList(userList)
             }
 
             override fun onCancelled(error: DatabaseError) {
                 //Handle the error
-                Log.i(READ, error.message)
+                Log.i("DB READ", error.message)
             }
         })
 
@@ -165,7 +160,7 @@ open class UserRepository {
 
     fun findUserIndexInLeaderboard(array : ArrayList<User?>, item : User?) : Int {
         val index = array.indexOfFirst { it?.fullName == item?.fullName }
-        Log.i(INDEX, "Index : $index " + "Size: ${array.size} " + "User Object: ${item?.fullName}")
+        Log.i("Index", "Index : $index " + "Size: ${array.size} " + "User Object: ${item?.fullName}")
         return index + 1
     }
 
