@@ -19,8 +19,11 @@ open class UserRepository {
     var userObject : User? = User(null, null,null,null,null,null)
     var userList : ArrayList<User?> = ArrayList()
 
-
-
+    //LiveData Implementering
+    /*
+     private val _userList : MutableLiveData<List<User?>> = MutableLiveData()
+     val userList : LiveData<List<User?>> = _userList
+    */
 
     //Create an account with the params the user gave. Firebase saves Auth User to DB and User Object.
     fun createUser(email: String, password : String, department: String, id: String, fullName: String, job : String){

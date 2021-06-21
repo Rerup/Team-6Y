@@ -60,6 +60,7 @@ class ProfileFragment : Fragment() {
         //Track current User
         val currentUser = auth.currentUser?.uid ?:""
 
+
         //Get current user values with currently logged in userID.
         userViewModel.getCurrentUser(currentUser)
     }
@@ -80,8 +81,6 @@ class ProfileFragment : Fragment() {
         //Logging the data for testing
         Log.i("DB READ", "email: ${binding.email}, tv2id: ${binding.id}  department: ${binding.department}  totalPoints: ${binding.points}, Name: ${binding.fullName}, Job: ${binding.job}")
         Log.i("THREAD", "I finished now")
-
-
 
 
     }

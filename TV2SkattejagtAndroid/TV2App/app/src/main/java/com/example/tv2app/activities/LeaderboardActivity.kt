@@ -71,6 +71,14 @@ class LeaderboardActivity : AppCompatActivity() {
     }
 
     private fun getUserList() : ArrayList<User?> {
+        //LiveData Implementering
+        /*
+
+            userViewModel.userList.observe(this) {users ->
+            adapter.updateUI(userList)
+        }
+         */
+
         val list = userViewModel.inflateLeaderboard()
         list.sortByDescending { it?.totalPoints ?:0 }
         return list
