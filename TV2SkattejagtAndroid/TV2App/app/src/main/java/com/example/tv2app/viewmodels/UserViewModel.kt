@@ -10,6 +10,10 @@ class UserViewModel(private val userRepository : UserRepository) : ViewModel() {
      var userObject : User? = User(null, null, null, null, null, null)
      var userList : ArrayList<User?> = ArrayList()
 
+    //LiveData Implementering
+    /*
+    val userList: LiveData<List<User?>> = userRepository.userList
+    */
 
     fun createUser(email: String, password: String, department: String, id: String, fullName : String, job : String) {
         userRepository.createUser(email, password, department, id, fullName, job)
